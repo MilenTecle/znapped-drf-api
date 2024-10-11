@@ -35,6 +35,9 @@ class PostList(APIView):
 
 
 class PostDetail(APIView):
+    """
+    Retrieve a post and edit or delete it if you own it
+    """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = PostSerializer
 
