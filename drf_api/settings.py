@@ -36,6 +36,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
+    'localhost',
 ]
 
 
@@ -63,6 +64,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
+]
+
+CORS_ALLOWED_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net'
 ]
 
 ROOT_URLCONF = 'drf_api.urls'
