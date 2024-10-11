@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from post.models import Post
+from posts.models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -26,9 +26,9 @@ class PostSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
 
-        class Meta:
-            model = Post
-            fields = [
-                'id', 'owner', 'is_owner', 'profile_id', 'profile_image',
-                'created_at', 'updated_at', 'title', 'content', 'image'
+    class Meta:
+        model = Post
+        fields = [
+            'id', 'owner', 'is_owner', 'profile_id', 'profile_image',
+            'created_at', 'updated_at', 'title', 'content', 'image'
             ]
