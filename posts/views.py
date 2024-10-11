@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Post
 from .serializers import PostSerializer
-from drf_api.permissions import IsOwnerReadOnly
+from drf_api.permissions import IsOwnerOrReadOnly
 
 
 class PostList(APIView):
@@ -35,7 +35,7 @@ class PostList(APIView):
 
 
 class PostDetail(APIView):
-    permission_classes = [IsOwnerReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = PostSerializer
 
     def get_object(self, pk):
