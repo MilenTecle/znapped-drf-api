@@ -65,7 +65,7 @@ DEBUG ='DEV' in os.environ
 ALLOWED_HOSTS = [
     '8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
     'localhost',
-    'znapped-drfapi-8eee30ca5ab2.herokuapp.com',
+    os.environ.get('ALLOWED_HOST'),
 ]
 
 
