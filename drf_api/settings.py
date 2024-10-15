@@ -63,7 +63,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG ='DEV' in os.environ
 
 ALLOWED_HOSTS = [
-    '8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
+    '3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
+    'znapped-972f129d36da.herokuapp.com',
     'localhost',
     os.environ.get('ALLOWED_HOST'),
 ]
@@ -117,13 +118,17 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
+    'https://3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
+    'localhost',
+    'https://znapped-972f129d36da.herokuapp.com',
 ]
 
 CORS_ALLOWED_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net'
+    'https://3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
+    'localhost',
+    'https://znapped-972f129d36da.herokuapp.com',
 ]
 
 ROOT_URLCONF = 'drf_api.urls'
