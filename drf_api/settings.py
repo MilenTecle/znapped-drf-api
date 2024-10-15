@@ -54,6 +54,16 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
 }
 
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
+
+if 'DEV' in os.environ:
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -66,6 +76,7 @@ DEBUG ='DEV' in os.environ
 
 ALLOWED_HOSTS = [
     '3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
+    '8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
     'znapped-972f129d36da.herokuapp.com',
     'http://localhost:3000',
     os.environ.get('ALLOWED_HOST'),
