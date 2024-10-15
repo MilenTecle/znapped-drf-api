@@ -65,7 +65,7 @@ DEBUG ='DEV' in os.environ
 ALLOWED_HOSTS = [
     '3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
     'znapped-972f129d36da.herokuapp.com',
-    'localhost',
+    'http://localhost:3000',
     os.environ.get('ALLOWED_HOST'),
 ]
 
@@ -119,7 +119,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 
 CSRF_TRUSTED_ORIGINS = [
     'https://3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
-    'localhost',
+    'http://localhost:3000',
     'https://znapped-972f129d36da.herokuapp.com',
 ]
 
@@ -127,7 +127,7 @@ CORS_ALLOWED_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     'https://3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
-    'localhost',
+    'http://localhost:3000',
     'https://znapped-972f129d36da.herokuapp.com',
 ]
 
