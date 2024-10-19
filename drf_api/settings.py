@@ -85,7 +85,8 @@ if 'DEV' in os.environ:
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG ='DEV' in os.environ
+# DEBUG ='DEV' in os.environ
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
