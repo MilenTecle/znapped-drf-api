@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions
+from rest_framework.exceptions import ValidationError
 from drf_api.permissions import IsOwnerOrReadOnly
 from likes.models import Like
 from likes.serializers import LikeSerializer
@@ -13,20 +14,23 @@ class LikeList(generics.ListCreateAPIView):
 
     def get_queryset(self):
       queryset = Like.objects.all()
-      # filter ty reaction_type if given in the query
+      # filter by reaction_type if given in the query
       reaction_type = self.request.query_params.get('reaction_type')
       if reaction_type:
         queryset = queryset.filter(reaction_type=reaction_type)
       return queryset
 
     def perform_create(self, serializer):
-      # Ensuer reaction_type is provided in the request data
+      # Retrieve and validate 'reaction_type' and 'post' from request data
       reaction_type = self.request.data.get('reaction_type')
+      post_id = self.request.data.get('post')
+
       if not reaction_type:
         raise ValidationError({"reaction_type": "No reaction was chosen."})
+      if not post_id:
+        raise ValidationError({"post": "No post ID was provided."})
 
       # Check for duplicate reaction
-      post_id = self.request.data.get('post')
       if Like.objects.filter(
           owner=self.request.user,
           post_id=post_id,
@@ -47,7 +51,7 @@ class LikeDetail(generics.RetrieveDestroyAPIView):
     queryset = Like.objects.all()
 
     def get_queryset(self):
-      # Get the default queryset from all Like objects
+      # Filter likes by reaction_type if provided in the query parameters
       queryset = super().get_queryset()
       reaction_type = self.request.query_params.get('reaction_type')
       if reaction_type:
