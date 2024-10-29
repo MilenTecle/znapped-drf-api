@@ -4,7 +4,7 @@ from posts.models import Post
 
 class Reaction(models.TextChoices):
   HEART = 'heart', 'Heart'
-  THUMBS_UP = 'thumps_up', 'Thumps Up'
+  THUMBS_UP = 'thumbs_up', 'Thumbs Up'
   LAUGH = 'laugh', 'Laugh'
   SAD = 'sad', 'Sad'
   ANGRY = 'angry', 'Angry'
