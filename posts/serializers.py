@@ -39,6 +39,16 @@ class PostSerializer(serializers.ModelSerializer):
             return like.id if like else None
         return None
 
+    def get_user_reaction(self, obj):
+       user = self.context['request'].user
+       if user.is_authenticated:
+            like = Like.objects.filter(
+                owner=user, post=obj
+            ).first()
+            return like.reaction_type if like else None
+       return None
+
+
     class Meta:
         model = Post
         fields = [
