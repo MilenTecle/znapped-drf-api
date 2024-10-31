@@ -150,9 +150,10 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     ]
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
     'http://localhost:3000',
-    'https://*.codeinstitute-ide.net/',
-    'https://*.herokuapp.com',
+    'https://znapped-972f129d36da.herokuapp.com',
+    'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
