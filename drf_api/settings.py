@@ -134,7 +134,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-  # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -154,6 +154,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
     'https://znapped-972f129d36da.herokuapp.com',
     'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
+    'http://127.0.0.1:8000',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
