@@ -36,6 +36,7 @@ class PostSerializer(serializers.ModelSerializer):
             like = Like.objects.filter(
                 owner=user, post=obj
             ).first()
+            print(f"Fetching like_id for user {user.username} on post {obj.id}: {like.id if like else 'None'}")
             return like.id if like else None
         return None
 
@@ -45,6 +46,7 @@ class PostSerializer(serializers.ModelSerializer):
             like = Like.objects.filter(
                 owner=user, post=obj
             ).first()
+            print(f"Fetching reaction_type for user {user.username} on post {obj.id}: {like.reaction_type if like else 'None'}")
             return like.reaction_type if like else None
        return None
 
