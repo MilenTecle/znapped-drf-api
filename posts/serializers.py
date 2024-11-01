@@ -12,6 +12,7 @@ class PostSerializer(serializers.ModelSerializer):
     reaction_type = serializers.SerializerMethodField()
     likes_count = serializers.ReadOnlyField()
     comments_count = serializers.ReadOnlyField()
+    video = serializers.FileField(required=False)
 
     def validate_image(self, value):
         if value.size > 2 * 1024 * 1024:
@@ -26,6 +27,11 @@ class PostSerializer(serializers.ModelSerializer):
             )
         return value
 
+    def validate_video(self, value):
+        if value.size > 10 * 1024 * 1024:
+            raise serializers.ValidationError('video size larger than 10MB!')
+        return value
+
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
@@ -36,7 +42,6 @@ class PostSerializer(serializers.ModelSerializer):
             like = Like.objects.filter(
                 owner=user, post=obj
             ).first()
-            print(f"Fetching like_id for user {user.username} on post {obj.id}: {like.id if like else 'None'}")
             return like.id if like else None
         return None
 
@@ -46,7 +51,6 @@ class PostSerializer(serializers.ModelSerializer):
             like = Like.objects.filter(
                 owner=user, post=obj
             ).first()
-            print(f"Fetching reaction_type for user {user.username} on post {obj.id}: {like.reaction_type if like else 'None'}")
             return like.reaction_type if like else None
        return None
 
@@ -57,5 +61,6 @@ class PostSerializer(serializers.ModelSerializer):
             'id', 'owner', 'is_owner', 'profile_id',
             'profile_image', 'created_at', 'updated_at',
             'title', 'content', 'image', 'image_filter',
-            'like_id', 'reaction_type', 'likes_count', 'comments_count',
+            'like_id', 'reaction_type', 'likes_count',
+            'comments_count', 'video'
         ]
