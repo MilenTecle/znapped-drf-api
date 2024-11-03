@@ -32,6 +32,13 @@ class PostSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('video size larger than 100MB!')
         return value
 
+    def validate(self, data):
+      if 'image' in data and 'video' in data:
+        raise serializers.ValidationError(
+          "You can only upload either an image or a video"
+        )
+      return data
+
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
