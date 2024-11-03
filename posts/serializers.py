@@ -28,8 +28,8 @@ class PostSerializer(serializers.ModelSerializer):
         return value
 
     def validate_video(self, value):
-        if value.size > 10 * 1024 * 1024:
-            raise serializers.ValidationError('video size larger than 10MB!')
+        if value.size > 100 * 1024 * 1024:
+            raise serializers.ValidationError('video size larger than 100MB!')
         return value
 
     def get_is_owner(self, obj):
@@ -62,5 +62,5 @@ class PostSerializer(serializers.ModelSerializer):
             'profile_image', 'created_at', 'updated_at',
             'title', 'content', 'image', 'image_filter',
             'like_id', 'reaction_type', 'likes_count',
-            'comments_count', 'video'
+            'comments_count', 'video',
         ]

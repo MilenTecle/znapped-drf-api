@@ -30,7 +30,8 @@ class Post(models.Model):
     video = models.FileField(
       upload_to='videos/',
       blank=True,
-      null=True
+      null=True,
+      default='../default_video_n6ie5w'
     )
 
     class Meta:
