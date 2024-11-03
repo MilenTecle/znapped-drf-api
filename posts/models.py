@@ -31,7 +31,6 @@ class Post(models.Model):
       upload_to='videos/',
       blank=True,
       null=True,
-      default='../default_video_n6ie5w'
     )
 
     class Meta:
