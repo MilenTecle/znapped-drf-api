@@ -33,7 +33,7 @@ class PostSerializer(serializers.ModelSerializer):
         return value
 
     def validate(self, data):
-      if 'image' in data and 'video' in data:
+      if data.get ('image') and data.get ('video'):
         raise serializers.ValidationError(
           "You can only upload either an image or a video"
         )
