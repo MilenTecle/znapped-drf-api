@@ -2,8 +2,8 @@ from django.db.models import Count
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_api.permissions import IsOwnerOrReadOnly
-from .models import Post
-from .serializers import PostSerializer
+from .models import Post, Hashtag
+from .serializers import PostSerializer, HashtagSerializer
 
 
 class PostList(generics.ListCreateAPIView):
@@ -26,10 +26,12 @@ class PostList(generics.ListCreateAPIView):
         'owner__followed__owner__profile',
         'likes__owner__profile',
         'owner__profile',
+        'hashtags__name'
     ]
     search_fields = [
         'owner__username',
         'title',
+        'hashtags__name'
     ]
     ordering_fields = [
         'likes_count',
@@ -51,3 +53,9 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
         likes_count=Count('likes', distinct=True),
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
+
+class HashtagList(generics.ListAPIView):
+  queryset = Hashtag.objects.all()
+  serializer_class = HashtagSerializer
+  filter_backends = [filters.SearchFilter]
+  search_fields = ['name']
