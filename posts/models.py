@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Hashtag(models.Model):
+  name = models.CharField(max_length=50, unique=True)
+  posts = models.ManyToManyField('Post', related_name="hashtags", blank=True)
+
+  def __str__(self):
+    return self.name
 
 class Post(models.Model):
     """
