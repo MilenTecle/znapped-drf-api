@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Post, Like, Hashtag
+from .models import Post, Hashtag
+from likes.models import Like
 
 class HashtagSerializer(serializers.ModelSerializer):
   class Meta:
