@@ -22,7 +22,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
       hashtag_names = validated_data.pop('hashtag_names', [])
-      post = Post.objects.create(**validated_data)
+      post = super().create(**validated_data)
       self._associate_hashtags(post, hashtag_names)
       return post
 
