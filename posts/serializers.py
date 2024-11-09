@@ -1,10 +1,16 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 from .models import Post, Hashtag
 from likes.models import Like
 
 class HashtagSerializer(serializers.ModelSerializer):
   class Meta:
     model = Hashtag
+    fields = ['id', 'name']
+
+class UserSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = User
     fields = ['id', 'name']
 
 class PostSerializer(serializers.ModelSerializer):
@@ -19,17 +25,24 @@ class PostSerializer(serializers.ModelSerializer):
     video = serializers.FileField(required=False)
     hashtags = HashtagSerializer(many=True, read_only=True)
     hashtag_names = serializers.ListField(write_only=True, required=False)
+    mentions = UserSerializer(many=True, read_only=True)
+    mention_usernames = serializers.ListField(write_only=True, required=False)
+
 
     def create(self, validated_data):
       hashtag_names = validated_data.pop('hashtag_names', [])
+      mention_usernames = validated_data.pop('mention_usernames', [])
       post = Post.objects.create(**validated_data)
       self._associate_hashtags(post, hashtag_names)
+      self._associate_mentions(post, mention_usernames)
       return post
 
     def update(self, instance, validated_data):
       hashtag_names = validated_data.pop('hashtag_names', [])
+      mention_usernames = validated_data.pop('mention_usernames', [])
       instance = super().update(instance, validated_data)
       self._associate_hashtags(instance, hashtag_names)
+      self._associate_mentions(instance, mention_usernames)
       return instance
 
     def _associate_hashtags(self, post, hashtag_names):
@@ -38,6 +51,10 @@ class PostSerializer(serializers.ModelSerializer):
         for name in hashtag_names
       ]
       post.hashtags.set(hashtags)
+
+    def _associate_mentions(self, post, mention_usernames):
+      users = User.objects.filter(username__in=mention_usernames)
+      post.mentions.set(hashtags)
 
     def validate_image(self, value):
         if value.size > 2 * 1024 * 1024:
@@ -95,5 +112,6 @@ class PostSerializer(serializers.ModelSerializer):
             'profile_image', 'created_at', 'updated_at',
             'title', 'content', 'image', 'image_filter',
             'like_id', 'reaction_type', 'likes_count',
-            'comments_count', 'video','hashtags', 'hashtag_names'
+            'comments_count', 'video','hashtags', 'hashtag_names',
+            'mention_usernames'
         ]

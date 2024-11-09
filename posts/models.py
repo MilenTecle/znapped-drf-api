@@ -38,6 +38,7 @@ class Post(models.Model):
       null=True,
     )
     hashtags = models.ManyToManyField(Hashtag, related_name="posts", blank=True)
+    mentions = models.ManyToManyField(User, related_name="mentions_posts", blank=True)
 
     class Meta:
         ordering = ['-created_at']

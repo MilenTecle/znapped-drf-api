@@ -26,12 +26,14 @@ class PostList(generics.ListCreateAPIView):
         'owner__followed__owner__profile',
         'likes__owner__profile',
         'owner__profile',
-        'hashtags__name'
+        'hashtags__name',
+        'mentions__username'
     ]
     search_fields = [
         'owner__username',
         'title',
-        'hashtags__name'
+        'hashtags__name',
+        'mentions__username'
     ]
     ordering_fields = [
         'likes_count',
@@ -49,7 +51,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Post.objects.prefetch_related('hashtags').annotate(
+    queryset = Post.objects.prefetch_related('hashtags', 'mentions').annotate(
         likes_count=Count('likes', distinct=True),
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
