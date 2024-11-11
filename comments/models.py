@@ -12,6 +12,7 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     content = models.TextField()
+    mentions = models.ManyToManyField(User, related_name="mention_comments", blank=True)
 
     class Meta:
         ordering = ['-created_at']
