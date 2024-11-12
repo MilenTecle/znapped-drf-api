@@ -94,6 +94,7 @@ ALLOWED_HOSTS = [
     'znapped-972f129d36da.herokuapp.com',
     '127.0.0.1',
     'localhost',
+    'testserver',
     os.environ.get('ALLOWED_HOST'),
 ]
 
