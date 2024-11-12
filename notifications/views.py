@@ -8,7 +8,7 @@ class NotificationList(generics.ListAPIView):
     serializer_class = NotificationSerializer
 
     def get_queryset(self):
-      return Notification.objects.filter(user=self.request.user).order_by('-creatad_at')
+      return Notification.objects.filter(user=self.request.user).order_by('-created_at')
 
 class NotificationUpdate(generics.UpdateAPIView):
   permission_classes = [IsAuthenticated]

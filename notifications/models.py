@@ -18,7 +18,7 @@ class Notification(models.Model):
 
   class Meta:
       ordering = ['-created_at']
-      unique_together = ['owner', 'sender', 'type']
+      unique_together = ['user', 'sender', 'type']
 
   def __str__(self):
       return f'Notification: {self.type} from {self.sender} to {self.user}'

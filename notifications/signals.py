@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from comments.models import Comment
 from followers.models import Follower
+from likes.models import Like
 from .models import Notification
 
 @receiver(post_save, sender=Comment)
