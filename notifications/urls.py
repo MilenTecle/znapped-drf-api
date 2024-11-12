@@ -1,5 +1,5 @@
 from django.urls import path
-from likes import views
+from notifications import views
 
 urlpatterns = [
     path('notifications/', views.NotificationList.as_view()),
