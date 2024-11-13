@@ -9,7 +9,9 @@ from .models import Notification
 @receiver(post_save, sender=Comment)
 def create_mention_notifications(sender, instance, created, **kwargs):
   if created:
+    print(f"Checking mentions for comment {instance.id}")
     for user in instance.mentions.all():
+      print(f"Creating notification for mentioned user {user.username}")
       Notification.objects.create(
         user=user,
         sender=instance.owner,
