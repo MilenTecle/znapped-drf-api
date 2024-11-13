@@ -10,7 +10,7 @@ class NotificationList(generics.ListAPIView):
     def get_queryset(self):
       if self.request.user.is_authenticated:
         return Notification.objects.filter(user=self.request.user).order_by('-created_at')
-      return Notification.objects.none()
+      return Notification.objects
 
 class NotificationUpdate(generics.UpdateAPIView):
   permission_classes = [IsOwnerOrReadOnly]
