@@ -11,17 +11,19 @@ def create_mention_notifications(sender, instance, created, **kwargs):
   if created:
     print(f"Checking mentions for comment {instance.id}")
     for user in instance.mentions.all():
-      print(f"Creating notification for mentioned user {user.username}")
-      Notification.objects.create(
-        user=user,
-        sender=instance.owner,
-        type="mention",
-        message=f"{instance.owner.username} mentioned you in a comment.",
-        )
+      if user != instance.owner:
+        print(f"Creating notification for mentioned user {user.username}")
+        Notification.objects.create(
+          user=user,
+          sender=instance.owner,
+          type="mention",
+          message=f"{instance.owner.username} mentioned you in a comment.",
+          )
 
 @receiver(post_save, sender=Follower)
 def create_follow_notifications(sender, instance, created, **kwargs):
   if created:
+    if instance.owner != instance.followed:
       Notification.objects.create(
         user=instance.followed,
         sender=instance.owner,
