@@ -9,7 +9,7 @@ from .models import Notification
 @receiver(post_save, sender=Comment)
 def create_mention_notifications(sender, instance, created, **kwargs):
   if created:
-    for user in instance.mention.all():
+    for user in instance.mentions.all():
       Notification.objects.create(
         user=user,
         sender=instance.owner,
