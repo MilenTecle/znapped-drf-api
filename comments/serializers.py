@@ -34,7 +34,7 @@ class CommentSerializer(serializers.ModelSerializer):
       return comment
 
     def _handle_mentions(self, comment, mention_usernames):
-      mentioned_users = Users.objects.filter(username__in=mention_usernames)
+      mentioned_users = User.objects.filter(username__in=mention_usernames)
       comment.mentions.set(mentioned_users)
 
 
