@@ -113,5 +113,5 @@ class PostSerializer(serializers.ModelSerializer):
             'title', 'content', 'image', 'image_filter',
             'like_id', 'reaction_type', 'likes_count',
             'comments_count', 'video','hashtags', 'hashtag_names',
-            'mention_usernames'
+            'mention_usernames', 'mentions'
         ]
