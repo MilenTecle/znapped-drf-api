@@ -17,6 +17,7 @@ def create_mention_notifications(sender, instance, created, **kwargs):
                 sender=instance.owner,
                 type="mention",
                 message=f"{instance.owner.username} mentioned you in a comment.",
+                post_id=instance.post
             )
           except Exception as e:
             print(f"Error creating notifications: {e}")
@@ -43,4 +44,5 @@ def create_like_notifications(sender, instance, created, **kwargs):
         sender=instance.owner,
         type="like",
         message=f"{instance.owner.username} liked your post.",
+        post_id=instance.post
         )
