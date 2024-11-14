@@ -22,7 +22,7 @@ class NotificationUpdate(generics.UpdateAPIView):
     return Notification.objects.filter(user=self.request.user, read=False)
 
 class MarkAsRead(APIView):
-  permission_classes = {IsOwnerOrReadOnly}
+  permission_classes = [IsOwnerOrReadOnly]
 
   def patch(self, request, *args, **kwargs):
     notifications =  Notification.objects.filter(user=request.user, read=False)
