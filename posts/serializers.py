@@ -54,7 +54,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     def _associate_mentions(self, post, mention_usernames):
       users = User.objects.filter(username__in=mention_usernames)
-      post.mentions.set(hashtags)
+      post.mentions.set(users)
 
     def validate_image(self, value):
         if value.size > 2 * 1024 * 1024:
