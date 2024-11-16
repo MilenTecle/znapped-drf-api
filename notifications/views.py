@@ -1,12 +1,12 @@
 from rest_framework import generics
 from rest_framework.views import APIView
-from drf_api.permissions import IsOwnerOrReadOnly
+from rest_framework import permissions
 from rest_framework.response import Response
 from .models import Notification
 from .serializers import NotificationSerializer
 
 class NotificationList(generics.ListAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = NotificationSerializer
 
     def get_queryset(self):
@@ -15,14 +15,14 @@ class NotificationList(generics.ListAPIView):
       return Notification.objects.none()
 
 class NotificationUpdate(generics.UpdateAPIView):
-  permission_classes = [IsOwnerOrReadOnly]
+  permission_classes = [permissions.IsAuthenticated]
   serializer_class = NotificationSerializer
 
   def get_queryset(self):
     return Notification.objects.filter(user=self.request.user, read=False)
 
 class MarkAsRead(APIView):
-  permission_classes = [IsOwnerOrReadOnly]
+  permission_classes = [permissions.IsAuthenticated]
 
   def patch(self, request, *args, **kwargs):
     notifications =  Notification.objects.filter(user=request.user, read=False)
