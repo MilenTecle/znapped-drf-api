@@ -29,12 +29,15 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
       mention_usernames = validated_data.pop('mention_usernames', [])
+      print(f"Mentions to add: {mention_usernames}")
       comment = super().create(validated_data)
       self._handle_mentions(comment, mention_usernames)
       return comment
 
     def _handle_mentions(self, comment, mention_usernames):
+      print(f"Mentions to add: {mention_usernames}")
       mentioned_users = User.objects.filter(username__in=mention_usernames)
+      print(f"Found users: {list(mentioned_users)}")
       comment.mentions.set(mentioned_users)
 
 
