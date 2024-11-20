@@ -75,6 +75,7 @@ CSRF_COOKIE_SECURE = True
 if 'DEV' in os.environ:
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
+    JWT_AUTH_SECURE = False
 
 
 # Quick-start development settings - unsuitable for production
