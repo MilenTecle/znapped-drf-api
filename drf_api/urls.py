@@ -33,5 +33,5 @@ urlpatterns = [
     path('likes/', include('likes.urls')),
     path('followers/', include('followers.urls')),
     path('notifications/', include('notifications.urls')),
-    path('direct-messages/', include('messages.urls')),
+    path('direct-messages/', include('direct_messages.urls')),
 ]

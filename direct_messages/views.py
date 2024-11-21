@@ -4,7 +4,7 @@ from drf_api.permissions import IsOwnerOrReadOnly
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from .models import DirectMessage
-from .serializers import DirectMessagSerializer
+from .serializers import DirectMessageSerializer
 from rest_framework.exceptions import ValidationError
 
 class DirectMessageList(generics.ListCreateAPIView):

@@ -127,7 +127,8 @@ INSTALLED_APPS = [
     'comments',
     'likes',
     'followers',
-    'notifications.apps.NotificationsConfig',
+    'notifications',
+    'direct_messages',
 ]
 SITE_ID = 1
 

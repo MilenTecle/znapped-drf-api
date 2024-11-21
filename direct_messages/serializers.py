@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import DirectMessage
 
-class DirectMessagSerializer(serializers.ModelSerializer):
+class DirectMessageSerializer(serializers.ModelSerializer):
   sender = serializers.ReadOnlyField(source='sender.username')
   receiver = serializers.ReadOnlyField(source='receiver.username')
 
