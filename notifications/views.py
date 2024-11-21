@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.views import APIView
+from django.contrib.auth.models import User
 from drf_api.permissions import IsOwnerOrReadOnly
 from rest_framework.response import Response
 from .models import Notification
