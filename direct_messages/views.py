@@ -1,3 +1,4 @@
+from django.db import models
 from rest_framework import generics
 from rest_framework.views import APIView
 from drf_api.permissions import IsOwnerOrReadOnly
@@ -13,18 +14,25 @@ class DirectMessageList(generics.ListCreateAPIView):
 
     def get_queryset(self):
       user = self.request.user
-      pk = self.kwargs.get('pk')
-      if not pk:
-        raise ValidationError({"pk": "A valid pk is required."})
+      receiver_id = self.kwargs.get('pk')
+
+      if not receiver_id:
+        raise ValidationError({"receiver_id": "A valid receiver_id is required."})
+
+      other_user = User.objects.filter(id=receiver_id).first()
+      if not other_user:
+        raise ValidationError({"receiver_id": "No user found with the provided ID."})
+
       return DirectMessage.objects.filter(
-        (models.Q(sender=user) & models.Q(receiver_id=pk)) |
-        (models.Q(sender_id=pk) & moedels.Q(receiver=user))
+        (models.Q(sender=user, receiver_id=receiver_id)) |
+        (models.Q(sender_id=receiver_id, receiver=user))
       )
 
     def perform_create(self, serializer):
       receiver_id = self.request.data.get('receiver_id')
       if not receiver_id:
         raise ValidationError({"receiver_id": "This field is required."})
+
       receiver = User.objects.filter(id=receiver_id).first()
       if not receiver:
         raise ValidationError({"receiver_id": "User does not exist."})
