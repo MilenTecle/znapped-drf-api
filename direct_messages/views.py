@@ -13,12 +13,12 @@ class DirectMessageList(generics.ListCreateAPIView):
 
     def get_queryset(self):
       user = self.request.user
-      user_id = self.request.query_params.get('user_id')
-      if not other_users:
-        return DirectMessage.objects.none()
+      pk = self.kwargs.get('pk')
+      if not pk:
+        raise ValidationError({"pk": "A valid pk is required."})
       return DirectMessage.objects.filter(
-        (models.Q(sender=user) & models.Q(receiver_id=other_users)) |
-        (models.Q(sender_id=user_id) & moedels.Q(receiver=user))
+        (models.Q(sender=user) & models.Q(receiver_id=pk)) |
+        (models.Q(sender_id=pk) & moedels.Q(receiver=user))
       )
 
     def perform_create(self, serializer):
