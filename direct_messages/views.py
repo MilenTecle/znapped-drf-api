@@ -13,12 +13,12 @@ class DirectMessageList(generics.ListCreateAPIView):
 
     def get_queryset(self):
       user = self.request.user
-      other_users = self.request.query_params.get('user_id')
+      user_id = self.request.query_params.get('user_id')
       if not other_users:
         return DirectMessage.objects.none()
       return DirectMessage.objects.filter(
         (models.Q(sender=user) & models.Q(receiver_id=other_users)) |
-        (models.Q(sender_id=other_users) & moedels.Q(receiver=user))
+        (models.Q(sender_id=user_id) & moedels.Q(receiver=user))
       )
 
     def perform_create(self, serializer):
