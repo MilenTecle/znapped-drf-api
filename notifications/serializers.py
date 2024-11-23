@@ -5,9 +5,10 @@ class NotificationSerializer(serializers.ModelSerializer):
   user = serializers.ReadOnlyField(source='user.username')
   sender = serializers.ReadOnlyField(source='sender.username')
   post_id = serializers.ReadOnlyField(source='post_id.id')
+  direct_message_id = serializers.ReadOnlyField(source='direct_message_id.id')
 
   class Meta:
     model = Notification
     fields = ['id', 'user', 'sender', 'type', 'message', 'created_at', 'read',
-    'post_id'
+    'post_id', 'direct_message_id'
   ]

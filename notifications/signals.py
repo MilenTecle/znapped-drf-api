@@ -50,3 +50,14 @@ def create_like_notifications(sender, instance, created, **kwargs):
         message=f"{instance.owner.username} liked your post.",
         post_id=post,
         )
+
+@receiver(post_save, sender=DirectMessage)
+def create_message_notifications(sender, instance, created, **kwargs):
+  if created:
+      Notification.objects.create(
+        user=instance.receiver,
+        sender=instance.sender,
+        type="message",
+        message=f"You have a new message from {instance.sender.username}.",
+        message_id=instance,
+        )
