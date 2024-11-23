@@ -47,5 +47,5 @@ def create_like_notifications(sender, instance, created, **kwargs):
         sender=instance.owner,
         type="like",
         message=f"{instance.owner.username} liked your post.",
-        post_id=instance.post
+        post_id=instance.post.id,
         )
