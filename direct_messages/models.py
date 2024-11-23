@@ -14,4 +14,4 @@ class DirectMessage(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        unique_together = ['sender', 'receiver', 'content']
+        unique_together = ['sender', 'receiver']
