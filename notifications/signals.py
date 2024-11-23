@@ -41,11 +41,11 @@ def create_like_notifications(sender, instance, created, **kwargs):
   if created:
     post_owner = instance.post.owner
 
-    if instance.owner != post.owner:
+    if instance.owner != post_owner:
       Notification.objects.create(
-        user=post.owner,
+        user=post_owner,
         sender=instance.owner,
         type="like",
         message=f"{instance.owner.username} liked your post.",
-        post_id=instance.post.id,
+        post_id=instance.post,
         )
