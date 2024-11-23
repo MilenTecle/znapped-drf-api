@@ -30,14 +30,7 @@ class LikeList(generics.ListCreateAPIView):
       if not post_id:
         raise ValidationError({"post": "No post ID was provided."})
 
-      # Check for duplicate reaction
-      if Like.objects.filter(
-          owner=self.request.user,
-          post_id=post_id,
-          reaction_type=reaction_type
-      ).exists():
-          raise ValidationError({"detail": "You have already reacted with this "
-           "type on this post"})
+      Like.objects.filter(owner=self.request.user, post_id=post_id).delete()
 
       serializer.save(owner=self.request.user, reaction_type=reaction_type)
 

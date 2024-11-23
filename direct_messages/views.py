@@ -24,8 +24,8 @@ class DirectMessageList(generics.ListCreateAPIView):
         raise ValidationError({"receiver_id": "No user found with the provided ID."})
 
       return DirectMessage.objects.filter(
-        (models.Q(sender=user, receiver_id=receiver_id)) |
-        (models.Q(sender_id=receiver_id, receiver=user))
+        (models.Q(sender=user, receiver=other_user)) |
+        (models.Q(sender=other_user, receiver=user))
       )
 
     def perform_create(self, serializer):
