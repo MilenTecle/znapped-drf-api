@@ -29,13 +29,13 @@ class DirectMessageList(generics.ListCreateAPIView):
       )
 
     def perform_create(self, serializer):
-      receiver_id = self.request.data.get('receiver_id')
+      receiver_id = self.request.data.get('receiver')
       if not receiver_id:
-        raise ValidationError({"receiver_id": "This field is required."})
+        raise ValidationError({"receiver": "This field is required."})
 
       receiver = User.objects.filter(id=receiver_id).first()
       if not receiver:
-        raise ValidationError({"receiver_id": "User does not exist."})
+        raise ValidationError({"receiver": "User does not exist."})
       serializer.save(sender=self.request.user, receiver=receiver)
 
 class MarkMessageAsRead(APIView):
