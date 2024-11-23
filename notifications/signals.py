@@ -4,14 +4,13 @@ from django.contrib.auth.models import User
 from comments.models import Comment
 from followers.models import Follower
 from likes.models import Like
-from .models import Notification
+from notifications.models import Notification
+from direct_messages.models import DirectMessage
 
 @receiver(post_save, sender=Comment)
 def create_mention_notifications(sender, instance, created, **kwargs):
   if created:
-    print(f"Signal triggered for comment: {instance.id}")
     for user in instance.mentions.all():
-      print(f"Creating notification for: {user}")
       if user != instance.owner:
           try:
             Notification.objects.create(
