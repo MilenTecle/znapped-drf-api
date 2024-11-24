@@ -23,7 +23,7 @@ def create_mention_notifications(sender, instance, created, **kwargs):
             print(f"Noticiation created for {user}")
           except Exception as e:
             print(f"Error creating notifications: {e}")
-
+"""
 @receiver(post_save, sender=Follower)
 def create_follow_notifications(sender, instance, created, **kwargs):
   if created:
@@ -34,7 +34,7 @@ def create_follow_notifications(sender, instance, created, **kwargs):
         type="follow",
         message=f"{instance.owner.username} started following you.",
         )
-
+"""
 @receiver(post_save, sender=Like)
 def create_like_notifications(sender, instance, created, **kwargs):
   if created:
