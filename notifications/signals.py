@@ -20,7 +20,6 @@ def create_mention_notifications(sender, instance, created, **kwargs):
                 message=f"{instance.owner.username} mentioned you in a comment.",
                 post_id=instance.post
             )
-            print(f"Noticiation created for {user}")
           except Exception as e:
             print(f"Error creating notifications: {e}")
 
