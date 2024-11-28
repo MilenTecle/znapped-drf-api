@@ -16,17 +16,20 @@ class DirectMessageList(generics.ListCreateAPIView):
       user = self.request.user
       receiver_id = self.kwargs.get('pk')
 
-      if not receiver_id:
-        raise ValidationError({"receiver_id": "A valid receiver_id is required."})
+      if receiver_id:
+        other_user = User.objects.filter(id=receiver_id).first()
+        if not other_user:
+          raise ValidationError({"receiver_id": "No user found with the provided ID."})
 
-      other_user = User.objects.filter(id=receiver_id).first()
-      if not other_user:
-        raise ValidationError({"receiver_id": "No user found with the provided ID."})
+        return DirectMessage.objects.filter(
+          (models.Q(sender=user, receiver=other_user)) |
+          (models.Q(sender=other_user, receiver=user))
+        )
 
       return DirectMessage.objects.filter(
-        (models.Q(sender=user, receiver=other_user)) |
-        (models.Q(sender=other_user, receiver=user))
-      )
+          models.Q(sender=user) | models.Q(receiver=user)
+        )
+
 
     def perform_create(self, serializer):
       receiver_id = self.request.data.get('receiver')
