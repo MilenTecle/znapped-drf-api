@@ -22,12 +22,12 @@ class DirectMessageList(generics.ListCreateAPIView):
           raise ValidationError({"receiver_id": "No user found with the provided ID."})
 
         return DirectMessage.objects.filter(
-          (models.Q(sender=user, receiver=other_user)) |
-          (models.Q(sender=other_user, receiver=user))
+          Q(sender_id=user.id, receiver_id=receiver_id) |
+          Q(sender=receiver_id, receiver_id=user.id)
         )
 
       return DirectMessage.objects.filter(
-          models.Q(sender=user) | models.Q(receiver=user)
+          Q(sender=user) | Q(receiver=user)
         )
 
 
