@@ -39,7 +39,7 @@ class DirectMessageList(generics.ListCreateAPIView):
       receiver = User.objects.filter(id=receiver_id).first()
       if not receiver:
         raise ValidationError({"receiver": "User does not exist."})
-      serializer.save(sender=self.request.user, receiver=receiver)
+      serializer.save(sender=self.request.user, receiver=receiver, read=False)
 
 class MarkMessageAsRead(APIView):
   permission_classes = [IsOwnerOrReadOnly]
