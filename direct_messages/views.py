@@ -5,6 +5,7 @@ from drf_api.permissions import IsOwnerOrReadOnly
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from .models import DirectMessage
+from notifications.models import Notification
 from .serializers import DirectMessageSerializer
 from rest_framework.exceptions import ValidationError
 
@@ -49,5 +50,10 @@ class MarkMessageAsRead(APIView):
     if not message_ids:
       return Response({"message": "No message IDs provided"}, status=400)
     DirectMessage.objects.filter(id__in=message_ids, receiver=request.user).update(read=True)
+    Notification.objects.filter(
+      type="message",
+      user=request.user,
+      message_id__in=message_ids
+    ).update(read=True)
     return Response({"Message": "Messages marked as read"})
 
