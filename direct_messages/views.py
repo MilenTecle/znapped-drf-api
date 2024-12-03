@@ -50,10 +50,12 @@ class MarkMessageAsRead(APIView):
     if not message_ids:
       return Response({"message": "No message IDs provided"}, status=400)
     DirectMessage.objects.filter(id__in=message_ids, receiver=request.user).update(read=True)
-    Notification.objects.filter(
+    notifications_to_update = Notification.objects.filter(
       type="message",
       user=request.user,
       message_id__in=message_ids
-    ).update(read=True)
+    )
+
+    updated_count = notifications_to_update.update(read=True)
     return Response({"Message": "Messages marked as read"})
 

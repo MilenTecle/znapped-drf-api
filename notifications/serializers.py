@@ -6,7 +6,7 @@ class NotificationSerializer(serializers.ModelSerializer):
   sender = serializers.ReadOnlyField(source='sender.username')
   sender_profile_id = serializers.ReadOnlyField(source='sender.profile.id')
   post_id = serializers.ReadOnlyField(source='post_id.id')
-  direct_message_id = serializers.ReadOnlyField(source='direct_message_id.id')
+  direct_message_id = serializers.ReadOnlyField(source='message_id.id')
 
   class Meta:
     model = Notification
