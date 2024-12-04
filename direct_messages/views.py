@@ -60,7 +60,7 @@ class MarkMessageAsRead(APIView):
     return Response({"Message": "Messages marked as read"})
 
 
-class DirectMessageDetail(generics.RetrieveDestroyAPIView):
+class DirectMessageDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = DirectMessage.objects.all()
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = DirectMessageSerializer
