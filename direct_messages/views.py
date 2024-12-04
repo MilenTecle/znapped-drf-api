@@ -59,3 +59,8 @@ class MarkMessageAsRead(APIView):
     updated_count = notifications_to_update.update(read=True)
     return Response({"Message": "Messages marked as read"})
 
+
+class DirectMessageDetail(generics.RetrieveDestroyAPIView):
+    queryset = DirectMessage.objects.all()
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = DirectMessageSerializer
