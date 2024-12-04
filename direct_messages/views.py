@@ -64,3 +64,9 @@ class DirectMessageDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = DirectMessage.objects.all()
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = DirectMessageSerializer
+
+    def get_queryset(self):
+      user = self.request.user
+      return DirectMessage.objects.filter(
+          models.Q(sender=user) | models.Q(receiver=user)
+        )

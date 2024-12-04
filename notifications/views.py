@@ -15,12 +15,12 @@ class NotificationList(generics.ListAPIView):
         return Notification.objects.filter(user=self.request.user).order_by('-created_at')
       return Notification.objects.none()
 
-class NotificationUpdate(generics.UpdateAPIView):
+class NotificationUpdate(generics.RetrieveUpdateDestroyAPIView):
   permission_classes = [IsOwnerOrReadOnly]
   serializer_class = NotificationSerializer
 
   def get_queryset(self):
-    return Notification.objects.filter(user=self.request.user, read=False)
+    return Notification.objects.filter(user=self.request.user)
 
 class MarkAsRead(APIView):
   permission_classes = [IsOwnerOrReadOnly]
