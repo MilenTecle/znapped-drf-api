@@ -16,7 +16,7 @@ class NotificationList(generics.ListAPIView):
       return Notification.objects.none()
 
 class NotificationUpdate(generics.RetrieveUpdateDestroyAPIView):
-  permission_classes = [IsOwnerOrReadOnly]
+  permission_classes = [IsSenderOrReceiver]
   serializer_class = NotificationSerializer
 
   def get_queryset(self):

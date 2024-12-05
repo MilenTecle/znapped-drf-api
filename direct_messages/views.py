@@ -62,7 +62,7 @@ class MarkMessageAsRead(APIView):
 
 class DirectMessageDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = DirectMessage.objects.all()
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsSenderOrReceiver]
     serializer_class = DirectMessageSerializer
 
     def get_queryset(self):
