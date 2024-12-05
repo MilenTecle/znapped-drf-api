@@ -9,10 +9,17 @@ from direct_messages.models import DirectMessage
 
 @receiver(post_save, sender=Comment)
 def create_mention_notifications(sender, instance, created, **kwargs):
-  if created:
-    for user in instance.mentions.all():
-      if user != instance.owner:
-          try:
+  if not created:
+    return
+
+  for user in instance.mentions.all():
+    if user != instance.owner:
+      if not Notification.objects.filter(
+          user=user,
+          sender=instance.owner,
+          type="mention",
+          post_id=instance.post
+      ).exists():
             Notification.objects.create(
                 user=user,
                 sender=instance.owner,
@@ -20,8 +27,6 @@ def create_mention_notifications(sender, instance, created, **kwargs):
                 message=f"{instance.owner.username} mentioned you in a comment.",
                 post_id=instance.post
             )
-          except Exception as e:
-            print(f"Error creating notifications: {e}")
 
 @receiver(post_save, sender=Follower)
 def create_follow_notifications(sender, instance, created, **kwargs):
