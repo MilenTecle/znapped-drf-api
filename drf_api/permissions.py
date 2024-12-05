@@ -11,4 +11,4 @@ class IsSenderOrReceiver(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return obj.sender == request.user or obj.receiver == request.user
+        return obj.sender == request.user or obj.receiver == request.user or obj.user == request.user
