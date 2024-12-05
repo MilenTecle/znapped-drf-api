@@ -1,7 +1,7 @@
 from django.db import models
 from rest_framework import generics
 from rest_framework.views import APIView
-from drf_api.permissions import IsOwnerOrReadOnly
+from drf_api.permissions import IsOwnerOrReadOnly, IsSenderOrReceiver
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from .models import DirectMessage
