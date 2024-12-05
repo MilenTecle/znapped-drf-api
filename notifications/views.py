@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
-from drf_api.permissions import IsOwnerOrReadOnly, IsSenderOrReceiver
+from drf_api.permissions import IsOwnerOrReadOnly, IsNotificationOwner
 from rest_framework.response import Response
 from .models import Notification
 from .serializers import NotificationSerializer
@@ -16,7 +16,7 @@ class NotificationList(generics.ListAPIView):
       return Notification.objects.none()
 
 class NotificationUpdate(generics.RetrieveUpdateDestroyAPIView):
-  permission_classes = [IsSenderOrReceiver]
+  permission_classes = [IsNotificationOwner]
   serializer_class = NotificationSerializer
 
   def get_queryset(self):
