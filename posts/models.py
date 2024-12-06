@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Hashtag(models.Model):
+  """
+  Hashtags used in posts.
+  Ensures that hashtags are unique and can be associated with multiple posts.
+  """
   name = models.CharField(max_length=50, unique=True)
 
   def __str__(self):
@@ -11,6 +15,7 @@ class Post(models.Model):
     """
     Post model, related to 'owner', i.e. a User instance.
     Default image set so that we can always reference image.url.
+    Includes associated hashtags for categorization.
     """
     image_filter_choices = [
     ('_1977', '1977'), ('brannan', 'Brannan'),
@@ -37,8 +42,12 @@ class Post(models.Model):
       blank=True,
       null=True,
     )
-    hashtags = models.ManyToManyField(Hashtag, related_name="posts", blank=True)
-    mentions = models.ManyToManyField(User, related_name="mentions_posts", blank=True)
+    hashtags = models.ManyToManyField(
+      Hashtag, related_name="posts", blank=True
+    )
+    mentions = models.ManyToManyField(
+      User, related_name="mentions_posts", blank=True
+    )
 
     class Meta:
         ordering = ['-created_at']

@@ -11,38 +11,41 @@ class PostList(generics.ListCreateAPIView):
     List posts or create a post if logged in
     The perform_create method associates the post with the logged in user.
     """
+
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Post.objects.prefetch_related('hashtags').annotate(
-        likes_count=Count('likes', distinct=True),
-        comments_count=Count('comment', distinct=True)
-    ).order_by('-created_at')
+    queryset = (
+        Post.objects.prefetch_related("hashtags")
+        .annotate(
+            likes_count=Count("likes", distinct=True),
+            comments_count=Count("comment", distinct=True),
+        )
+        .order_by("-created_at")
+    )
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = [
-        'owner__followed__owner__profile',
-        'likes__owner__profile',
-        'owner__profile',
-        'hashtags__name',
-        'mentions__username'
+        "owner__followed__owner__profile",
+        "likes__owner__profile",
+        "owner__profile",
+        "hashtags__name",
+        "mentions__username",
     ]
-    search_fields = [
-        'owner__username',
-        'title',
-        'hashtags__name',
-        'mentions__username'
-    ]
+    search_fields = ["owner__username", "title", "hashtags__name", "mentions__username"]
     ordering_fields = [
-        'likes_count',
-        'comments_count',
-        'likes__created_at',
+        "likes_count",
+        "comments_count",
+        "likes__created_at",
     ]
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+      """
+      Associates the logged-in user as the owner of the new post.
+      """
+      serializer.save(owner=self.request.user)
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -51,13 +54,20 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Post.objects.prefetch_related('hashtags', 'mentions').annotate(
-        likes_count=Count('likes', distinct=True),
-        comments_count=Count('comment', distinct=True)
-    ).order_by('-created_at')
+    queryset = (
+        Post.objects.prefetch_related("hashtags", "mentions")
+        .annotate(
+            likes_count=Count("likes", distinct=True),
+            comments_count=Count("comment", distinct=True),
+        )
+        .order_by("-created_at")
+    )
 
 class HashtagList(generics.ListAPIView):
+  """
+  Listing hashtags and supports searching by hashtag nane.
+  """
   queryset = Hashtag.objects.all()
   serializer_class = HashtagSerializer
   filter_backends = [filters.SearchFilter]
-  search_fields = ['name']
+  search_fields = ["name"]

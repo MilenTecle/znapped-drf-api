@@ -8,13 +8,15 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('posts', '0010_remove_hashtag_posts_post_hashtags'),
+        ("posts", "0010_remove_hashtag_posts_post_hashtags"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='mentions',
-            field=models.ManyToManyField(blank=True, related_name='mentions_posts', to=settings.AUTH_USER_MODEL),
+            model_name="post",
+            name="mentions",
+            field=models.ManyToManyField(
+                blank=True, related_name="mentions_posts", to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]

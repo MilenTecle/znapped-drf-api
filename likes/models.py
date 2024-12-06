@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from posts.models import Post
 
+"""
+Reaction types with predefined options that allow users to
+like with different reactions.
+"""
 class Reaction(models.TextChoices):
   HEART = 'heart', 'Heart'
   THUMBS_UP = 'thumbs_up', 'Thumbs Up'
@@ -13,7 +17,7 @@ class Like(models.Model):
     """
     Like model, related to 'owner' and 'post'.
     'owner' is a User instance and 'post' is a Post instance.
-    'unique_together' makes sure a user can't like the same post twice.
+    Ensures uniqueness per user, post and reaction type.
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(

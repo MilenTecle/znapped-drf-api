@@ -7,7 +7,9 @@ from likes.serializers import LikeSerializer
 
 class LikeList(generics.ListCreateAPIView):
     """
-    List likes or create a like if logged in
+    List likes or create a like if logged in.
+    Supports filtering by reaction type.
+    Ensures a reaction is valid and linked to a specific post.
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = LikeSerializer
@@ -21,7 +23,11 @@ class LikeList(generics.ListCreateAPIView):
       return queryset
 
     def perform_create(self, serializer):
-      # Retrieve and validate 'reaction_type' and 'post' from request data
+      """
+      Retrieve and validate 'reaction_type' and 'post'
+      from request data before saving.
+      Ensures only one reaction per user for a post.
+      """
       reaction_type = self.request.data.get('reaction_type')
       post_id = self.request.data.get('post')
 
@@ -30,6 +36,7 @@ class LikeList(generics.ListCreateAPIView):
       if not post_id:
         raise ValidationError({"post": "No post ID was provided."})
 
+      # Remove any existing reaction by the user for the same post
       Like.objects.filter(owner=self.request.user, post_id=post_id).delete()
 
       serializer.save(owner=self.request.user, reaction_type=reaction_type)
@@ -37,7 +44,8 @@ class LikeList(generics.ListCreateAPIView):
 
 class LikeDetail(generics.RetrieveDestroyAPIView):
     """
-    Retrieve a like or delete it by id if you own it
+    Retrieve a like or delete it by id if owned by the user.
+    Supports filtering by reaction type in the query parameters.
     """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = LikeSerializer

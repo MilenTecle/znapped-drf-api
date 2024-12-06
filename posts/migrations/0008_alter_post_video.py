@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('posts', '0007_alter_post_image'),
+        ("posts", "0007_alter_post_image"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='video',
-            field=models.FileField(blank=True, null=True, upload_to='videos/'),
+            model_name="post",
+            name="video",
+            field=models.FileField(blank=True, null=True, upload_to="videos/"),
         ),
     ]

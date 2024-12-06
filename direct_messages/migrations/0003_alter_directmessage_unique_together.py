@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('direct_messages', '0002_alter_directmessage_unique_together'),
+        ("direct_messages", "0002_alter_directmessage_unique_together"),
     ]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='directmessage',
+            name="directmessage",
             unique_together=set(),
         ),
     ]

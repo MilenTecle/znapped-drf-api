@@ -8,23 +8,28 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('posts', '0011_post_mentions'),
+        ("posts", "0011_post_mentions"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('notifications', '0001_initial'),
+        ("notifications", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='notification',
+            name="notification",
             unique_together=set(),
         ),
         migrations.AddField(
-            model_name='notification',
-            name='post_id',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='posts.post'),
+            model_name="notification",
+            name="post_id",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="posts.post",
+            ),
         ),
         migrations.AlterUniqueTogether(
-            name='notification',
-            unique_together={('user', 'sender', 'type', 'post_id')},
+            name="notification",
+            unique_together={("user", "sender", "type", "post_id")},
         ),
     ]

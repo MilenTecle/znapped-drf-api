@@ -8,13 +8,15 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('comments', '0001_initial'),
+        ("comments", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='comment',
-            name='mentions',
-            field=models.ManyToManyField(blank=True, related_name='mention_comments', to=settings.AUTH_USER_MODEL),
+            model_name="comment",
+            name="mentions",
+            field=models.ManyToManyField(
+                blank=True, related_name="mention_comments", to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]

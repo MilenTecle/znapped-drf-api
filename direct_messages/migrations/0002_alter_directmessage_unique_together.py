@@ -8,12 +8,12 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('direct_messages', '0001_initial'),
+        ("direct_messages", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='directmessage',
-            unique_together={('sender', 'receiver')},
+            name="directmessage",
+            unique_together={("sender", "receiver")},
         ),
     ]

@@ -8,29 +8,43 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('direct_messages', '0001_initial'),
+        ("direct_messages", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('posts', '0011_post_mentions'),
-        ('notifications', '0002_alter_notification_unique_together_and_more'),
+        ("posts", "0011_post_mentions"),
+        ("notifications", "0002_alter_notification_unique_together_and_more"),
     ]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='notification',
+            name="notification",
             unique_together=set(),
         ),
         migrations.AddField(
-            model_name='notification',
-            name='message_id',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='direct_messages.directmessage'),
+            model_name="notification",
+            name="message_id",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="direct_messages.directmessage",
+            ),
         ),
         migrations.AlterField(
-            model_name='notification',
-            name='type',
-            field=models.CharField(choices=[('comment', 'Comment'), ('follow', 'New Follower'), ('like', 'Like'), ('mention', 'Mention'), ('message', 'Message')], max_length=50),
+            model_name="notification",
+            name="type",
+            field=models.CharField(
+                choices=[
+                    ("comment", "Comment"),
+                    ("follow", "New Follower"),
+                    ("like", "Like"),
+                    ("mention", "Mention"),
+                    ("message", "Message"),
+                ],
+                max_length=50,
+            ),
         ),
         migrations.AlterUniqueTogether(
-            name='notification',
-            unique_together={('user', 'sender', 'type', 'post_id', 'message_id')},
+            name="notification",
+            unique_together={("user", "sender", "type", "post_id", "message_id")},
         ),
     ]
