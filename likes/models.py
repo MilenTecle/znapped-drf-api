@@ -6,12 +6,15 @@ from posts.models import Post
 Reaction types with predefined options that allow users to
 like with different reactions.
 """
+
+
 class Reaction(models.TextChoices):
-  HEART = 'heart', 'Heart'
-  THUMBS_UP = 'thumbs_up', 'Thumbs Up'
-  LAUGH = 'laugh', 'Laugh'
-  SAD = 'sad', 'Sad'
-  ANGRY = 'angry', 'Angry'
+    HEART = 'heart', 'Heart'
+    THUMBS_UP = 'thumbs_up', 'Thumbs Up'
+    LAUGH = 'laugh', 'Laugh'
+    SAD = 'sad', 'Sad'
+    ANGRY = 'angry', 'Angry'
+
 
 class Like(models.Model):
     """
@@ -34,5 +37,3 @@ class Like(models.Model):
 
     def __str__(self):
         return f'{self.owner} {self.post} {self.reaction_type}'
-
-

@@ -16,11 +16,11 @@ class CommentList(generics.ListCreateAPIView):
     filterset_fields = ['post']
 
     def perform_create(self, serializer):
-      """
-      Automatically set the owner of the comment to the
-      logged-in user during creation.
-      """
-      serializer.save(owner=self.request.user)
+        """
+        Automatically set the owner of the comment to the
+        logged-in user during creation.
+        """
+        serializer.save(owner=self.request.user)
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):

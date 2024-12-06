@@ -155,7 +155,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 CSRF_TRUSTED_ORIGINS = [
     'https://3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
     'https://znapped-972f129d36da.herokuapp.com',
-    'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
+    'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',  # noqa
     'http://127.0.0.1:8000',
     'http://localhost:8000',
 ]
@@ -206,16 +206,16 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa
     },
 ]
 

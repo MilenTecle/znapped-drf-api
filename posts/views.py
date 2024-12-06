@@ -34,7 +34,8 @@ class PostList(generics.ListCreateAPIView):
         "hashtags__name",
         "mentions__username",
     ]
-    search_fields = ["owner__username", "title", "hashtags__name", "mentions__username"]
+    search_fields = ["owner__username", "title",
+                     "hashtags__name", "mentions__username"]
     ordering_fields = [
         "likes_count",
         "comments_count",
@@ -42,10 +43,10 @@ class PostList(generics.ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
-      """
-      Associates the logged-in user as the owner of the new post.
-      """
-      serializer.save(owner=self.request.user)
+        """
+        Associates the logged-in user as the owner of the new post.
+        """
+        serializer.save(owner=self.request.user)
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -63,11 +64,12 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
         .order_by("-created_at")
     )
 
+
 class HashtagList(generics.ListAPIView):
-  """
-  Listing hashtags and supports searching by hashtag nane.
-  """
-  queryset = Hashtag.objects.all()
-  serializer_class = HashtagSerializer
-  filter_backends = [filters.SearchFilter]
-  search_fields = ["name"]
+    """
+    Listing hashtags and supports searching by hashtag nane.
+    """
+    queryset = Hashtag.objects.all()
+    serializer_class = HashtagSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["name"]
