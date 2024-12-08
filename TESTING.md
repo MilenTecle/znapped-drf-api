@@ -13,98 +13,86 @@
 
 ### [PEP8 - CI](https://pep8ci.herokuapp.com/)
 
-**TEST**||**RESULT**
-:------|:------|:----:
-|**drf-api project**|| ✅
-|&nbsp;&nbsp;permissions.py| dfs | ✅
-|&nbsp;&nbsp;serializers.py| dfs | ✅
-|&nbsp;&nbsp;settings.py| dfs | ✅
-|&nbsp;&nbsp;urls.py| dfs | ✅
-|&nbsp;&nbsp;views.py| dfs | ✅
+|**TEST**|**ACTION**|**EXPECTATION**|**RESULT**|
+|-------------------------|---------------------------|---------------------------|-------------|
+|**drf-api project** |
+|&nbsp;&nbsp;permissions.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/drf-api-project/permissions.PNG) | ✅ |
+|&nbsp;&nbsp;serializers.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/drf-api-project/seralizers.PNG)  | ✅ |
+|&nbsp;&nbsp;settings.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) |[No issues found](docs/testing-images/drf-api-project/settings.PNG)   | ✅ |
+|&nbsp;&nbsp;urls.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) |[No issues found](docs/testing-images/drf-api-project/urls.PNG) | ✅ |
+|&nbsp;&nbsp;views.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/drf-api-project/views.PNG)  | ✅ |
 
-**||**
-:------|:------|:----:
-|**comments**|PEP& | ✅
-|&nbsp;&nbsp;admin.py| dfs | ✅
-|&nbsp;&nbsp;apps.py| dfs | ✅
-|&nbsp;&nbsp;models.py| dfs | ✅
-|&nbsp;&nbsp;serializers.py| dfs | ✅
-|&nbsp;&nbsp;urls.py| dfs | ✅
-|&nbsp;&nbsp;views.py| dfs | ✅
+|**TEST**|**ACTION**|**EXPECTATION**|**RESULT**|
+|-------------------------|---------------------------|---------------------------|-------------|
+|**comments** |
+|&nbsp;&nbsp;admin.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/comments/admin.PNG) | ✅ |
+|&nbsp;&nbsp;apps.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/comments/apps.PNG) | ✅ |
+|&nbsp;&nbsp;models.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/comments/models.PNG) | ✅ |
+|&nbsp;&nbsp;serializers.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/comments/serializers.PNG) | ✅ |
+|&nbsp;&nbsp;urls.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/comments/urls.PNG) | ✅ |
+|&nbsp;&nbsp;views.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/comments/views.PNG) | ✅ |
 
-**TEST**|**ACTION**|**RESULT**
-:------|:------|:----:
-|**direct_messages**|PEP& | ✅
-|&nbsp;&nbsp;admin.py| dfs | ✅
-|&nbsp;&nbsp;apps.py| dfs | ✅
-|&nbsp;&nbsp;models.py| dfs | ✅
-|&nbsp;&nbsp;serializers.py| dfs | ✅
-|&nbsp;&nbsp;urls.py| dfs | ✅
-|&nbsp;&nbsp;views.py| dfs | ✅
+|**TEST**|**ACTION**|**EXPECTATION**|**RESULT**|
+|-------------------------|---------------------------|---------------------------|-------------|
+|**direct_messages** |
+|&nbsp;&nbsp;admin.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/direct-messages/admin.PNG) | ✅ |
+|&nbsp;&nbsp;apps.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/direct-messages/apps.PNG) | ✅ |
+|&nbsp;&nbsp;models.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/direct-messages/models.PNG) | ✅ |
+|&nbsp;&nbsp;serializers.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/direct-messages/serializers.PNG)| ✅ |
+|&nbsp;&nbsp;urls.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/direct-messages/urls.PNG) | ✅ |
+|&nbsp;&nbsp;views.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/direct-messages/views.PNG) | ✅ |
 
-**TEST**|**ACTION**|**RESULT**
-:------|:------|:----:
-|**followers**|PEP& | ✅
-|&nbsp;&nbsp;admin.py| dfs | ✅
-|&nbsp;&nbsp;apps.py| dfs | ✅
-|&nbsp;&nbsp;models.py| dfs | ✅
-|&nbsp;&nbsp;serializers.py| dfs | ✅
-|&nbsp;&nbsp;urls.py| dfs | ✅
-|&nbsp;&nbsp;views.py| dfs | ✅
+**TEST**|**ACTION**|**EXPECTATION**|**RESULT**|
+|-------------------------|---------------------------|---------------------------|-------------|
+|**followers** |
+|&nbsp;&nbsp;admin.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/followers/admin.PNG) | ✅ |
+|&nbsp;&nbsp;apps.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) |[No issues found](docs/testing-images/followers/apps.PNG)  | ✅ |
+|&nbsp;&nbsp;models.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/followers/models.PNG) | ✅ |
+|&nbsp;&nbsp;serializers.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/followers/serializers.PNG) | ✅ |
+|&nbsp;&nbsp;urls.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/followers/urls.PNG)  | ✅ |
+|&nbsp;&nbsp;views.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/followers/views.PNG) | ✅ |
 
-**TEST**|**ACTION**|**RESULT**
-:------|:------|:----:
-|**likes**|PEP& | ✅
-|&nbsp;&nbsp;admin.py| dfs | ✅
-|&nbsp;&nbsp;apps.py| dfs | ✅
-|&nbsp;&nbsp;models.py| dfs | ✅
-|&nbsp;&nbsp;serializers.py| dfs | ✅
-|&nbsp;&nbsp;urls.py| dfs | ✅
-|&nbsp;&nbsp;views.py| dfs | ✅
+**TEST**|**ACTION**|**EXPECTATION**|**RESULT**|
+|-------------------------|---------------------------|---------------------------|-------------|
+|**likes** |
+|&nbsp;&nbsp;admin.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/likes/admin.PNG) | ✅ |
+|&nbsp;&nbsp;apps.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/likes/apps.PNG)| ✅ |
+|&nbsp;&nbsp;models.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/likes/models.PNG) | ✅ |
+|&nbsp;&nbsp;serializers.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/likes/serializers.PNG) | ✅ |
+|&nbsp;&nbsp;urls.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/likes/urls.PNG) | ✅ |
+|&nbsp;&nbsp;views.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/likes/views.PNG)| ✅ |
 
-**TEST**|**ACTION**|**RESULT**
-:------|:------|:----:
-|**notifications**|PEP& | ✅
-|&nbsp;&nbsp;admin.py| dfs | ✅
-|&nbsp;&nbsp;apps.py| dfs | ✅
-|&nbsp;&nbsp;models.py| dfs | ✅
-|&nbsp;&nbsp;serializers.py| dfs | ✅
-|&nbsp;&nbsp;urls.py| dfs | ✅
-|&nbsp;&nbsp;views.py| dfs | ✅
+**TEST**|**ACTION**|**EXPECTATION**|**RESULT**|
+|-------------------------|---------------------------|---------------------------|-------------|
+|**notifications** |
+|&nbsp;&nbsp;admin.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/notifications/admin.PNG) | ✅ |
+|&nbsp;&nbsp;apps.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/notifications/apps.PNG) | ✅ |
+|&nbsp;&nbsp;models.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/notifications/models.PNG)| ✅ |
+|&nbsp;&nbsp;serializers.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/notifications/serializers.PNG) | ✅ |
+|&nbsp;&nbsp;signals.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/notifications/signals.PNG) | ✅ |
+|&nbsp;&nbsp;urls.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/notifications/urls.PNG) | ✅ |
+|&nbsp;&nbsp;views.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/notifications/views.PNG) | ✅ |
 
-**TEST**|**ACTION**|**RESULT**
-:------|:------|:----:
-|**posts**|PEP& | ✅
-|&nbsp;&nbsp;admin.py| dfs | ✅
-|&nbsp;&nbsp;apps.py| dfs | ✅
-|&nbsp;&nbsp;models.py| dfs | ✅
-|&nbsp;&nbsp;serializers.py| dfs | ✅
-|&nbsp;&nbsp;urls.py| dfs | ✅
-|&nbsp;&nbsp;views.py| dfs | ✅
+**TEST**|**ACTION**|**EXPECTATION**|**RESULT**|
+|-------------------------|---------------------------|---------------------------|-------------|
+|**posts** |
+|&nbsp;&nbsp;admin.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/posts/admin.PNG) | ✅ |
+|&nbsp;&nbsp;apps.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/posts/apps.PNG) | ✅ |
+|&nbsp;&nbsp;models.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/posts/models.PNG) | ✅ |
+|&nbsp;&nbsp;serializers.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/posts/serializers.PNG) | ✅ |
+|&nbsp;&nbsp;urls.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/posts/urls.PNG)| ✅ |
+|&nbsp;&nbsp;views.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/posts/views.PNG) | ✅ |
 
 
-**TEST**|**ACTION**|**RESULT**
-:------|:------|:----:
-|**profiles**|PEP& | ✅
-|&nbsp;&nbsp;admin.py| dfs | ✅
-|&nbsp;&nbsp;apps.py| dfs | ✅
-|&nbsp;&nbsp;models.py| dfs | ✅
-|&nbsp;&nbsp;serializers.py| dfs | ✅
-|&nbsp;&nbsp;urls.py| dfs | ✅
-|&nbsp;&nbsp;views.py| dfs | ✅
-
-<details>
-  <summary>Pep8 errors</summary>
-
-  ![Python Pep8](docs/readme_images/pep8_validation_errors.png)
-  ![Python Pep8](docs/readme_images/pep8_validation_errors2.png)
-</details>
-
-<details>
-  <summary>Pep8 all clear</summary>
-
-   ![Python Pep8](docs/readme_images/pep8_validation_clear.png)
-</details>
+**TEST**|**ACTION**|**EXPECTATION**|**RESULT**|
+|-------------------------|---------------------------|---------------------------|-------------|
+|**profiles** |
+|&nbsp;&nbsp;admin.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/profiles/admin.PNG) | ✅ |
+|&nbsp;&nbsp;apps.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/profiles/apps.PNG)| ✅ |
+|&nbsp;&nbsp;models.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/profiles/models.PNG) | ✅ |
+|&nbsp;&nbsp;serializers.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/profiles/serializers.PNG) | ✅ |
+|&nbsp;&nbsp;urls.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/profiles/urls.PNG)| ✅ |
+|&nbsp;&nbsp;views.py | [PEP8 - CI](https://pep8ci.herokuapp.com/) | [No issues found](docs/testing-images/profiles/views.PNG)| ✅ |
 
 
 ## Manual Testing
