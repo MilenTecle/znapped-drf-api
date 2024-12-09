@@ -116,7 +116,7 @@ The entity relationship diagram provided is the first draft and does not include
 <details open>
   <summary>Database schema</summary>
 
-  ![Database schema](docs/readme_images/database_schema.png)
+  ![Database schema](docs/database-schema/Database-schema.png)
 </details>
 
 #### User Model
@@ -130,7 +130,7 @@ Relationships:
 Represents a user's profile with additional information like, bio, image, post and follower count.
 
 Fields:
-- owner
+- owner (One-to-one with User)
 - name
 - content
 - image
@@ -140,10 +140,10 @@ Fields:
 
 Relationships:
 - One-to-one relationship with the User model.
-- Connected to Follower Model, links users as followers and those they follow using the User model.
+- Connected to Follower Model via the User model to link followers and following.
 
 #### Post Model
-Represents user-generated posts, including support for images, hashtags and mentions.
+Represents user-generated posts, including support for images and hashtags.
 
 Fields:
 - title
@@ -157,7 +157,7 @@ Fields:
 Relationships:
 - Many-to-one relationship with the User model.
 - One-to-many relationship with the Comment and Like models.
-- Many-to-many relationship with the Hashtag and User models.
+- Many-to-many relationship with the Hashtag model
 
 #### Comment Model
 Represents a comment on a post.
@@ -212,8 +212,8 @@ Fields:
 - updated_at
 
 Relationships:
-- Many-to-one relationship with the User model (as sender and receiver)
-
+- Many-to-one relationship with the User model (as sender).
+- Many-to-one relationship with the User model (as receiver).
 #### Notification Model
 Tracks notifications for user activities such as likes, messages and mentions.
 
@@ -229,7 +229,7 @@ Fields:
 
 Relationships:
 - Many-to-one relationship with the User model (as user and sender)
-- Many-to-one relationship with the Post and DirectMessage models.
+- Many-to-one relationship with the DirectMessage model.
 
 ## Testing
 Testing and the results can be found [here](/TESTING.md).
