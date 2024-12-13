@@ -9,24 +9,36 @@ from direct_messages.models import DirectMessage
 
 
 @receiver(post_save, sender=Comment)
+def create_comment_notifications(sender, instance, created, **kwargs):
+    """
+    Creates a notification for the post owner when a new commment is
+    created. Ensures the notification is not sent to the comment owner.
+    """
+    if created:
+        post_owner = instance.post.owner
+        if instance.owner != post.owner:
+            Notification.objects.get_or_create(
+                user=post_owner,
+                sender=instance.owner,
+                type="comment",
+                message=(
+                    f"{instance.owner.username} commented on your post"
+                ),
+                post_id=instance.post
+            )
+
+
+@receiver(m2m_changed, sender=Comment.mentions.through)
 def create_mention_notifications(sender, instance, created, **kwargs):
     """
     Creates a notification when a user is mentioned in a comment.
     Ensures the user is not the comment owner and prevents duplicate
     notifications by checking if it exists first.
     """
-    if not created:
-        return
-
-    for user in instance.mentions.all():
-        if user != instance.owner:
-            if not Notification.objects.filter(
-                user=user,
-                sender=instance.owner,
-                type="mention",
-                post_id=instance.post
-            ).exists():
-                Notification.objects.create(
+    if action == "post_add":
+        for user in instance.mentions.all():
+            if user != instance.owner:
+                Notification.objects.get_or_create(
                     user=user,
                     sender=instance.owner,
                     type="mention",
