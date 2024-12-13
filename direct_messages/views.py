@@ -20,24 +20,25 @@ class DirectMessageList(generics.ListCreateAPIView):
 
     def get_queryset(self):
         """
-        Retrieves messages exchanged with the specified users if a receiver_id
-        is provided. Otherwise, retrieves all messages for the logged-in user.
+        Retrieves messages exchanged with specified user
+        If user_id is provided as a query parameter. Otherwise,
+        retrieves all messages for the logged-in user.
         Filters messages by sender and receiver for the logged-in user.
         """
         user = self.request.user
-        receiver_id = self.kwargs.get('pk')
+        ruser_id = self.request.query_params.get('user_id')
 
         if receiver_id:
             # Validate that the receiver exists
-            other_user = User.objects.filter(id=receiver_id).first()
+            other_user = User.objects.filter(id=user_id).first()
             if not other_user:
                 raise ValidationError(
                     {"receiver_id": "No user found with the provided ID."}
                 )
             # Retrieve messages exchanged with the specified user
             return DirectMessage.objects.filter(
-                models.Q(sender_id=user.id, receiver_id=receiver_id) |
-                models.Q(sender=receiver_id, receiver_id=user.id)
+                models.Q(sender=user, receiver_id=user_id) |
+                models.Q(sender_id=user_id, receiver=user)
             )
         # Retrieve all messages for the logged-in user
         return DirectMessage.objects.filter(
