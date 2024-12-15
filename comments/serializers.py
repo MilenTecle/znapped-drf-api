@@ -46,11 +46,10 @@ class CommentSerializer(serializers.ModelSerializer):
         mentioned_users = (User.objects.filter(username__in=mention_usernames))
 
         comment = super().create(validated_data)
+        comment.save()
 
         if mentioned_users.exists():
-            comment.save()
             comment.mentions.set(mentioned_users)
-            comment.save()
 
         return comment
 
