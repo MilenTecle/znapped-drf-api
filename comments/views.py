@@ -11,7 +11,7 @@ class CommentList(generics.ListCreateAPIView):
     """
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Comment.objects.all()
+    queryset = Comment.objects.all().prefetch_related('mentions')
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['post']
 
@@ -20,7 +20,11 @@ class CommentList(generics.ListCreateAPIView):
         Automatically set the owner of the comment to the
         logged-in user during creation.
         """
-        serializer.save(owner=self.request.user)
+        comment = serializer.save(owner=self.request.user)
+        comment = Comment.objects.prefetch_related(
+            'mentions').get(id=comment.id)
+
+        serializer.instance = comment
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -30,4 +34,4 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = CommentDetailSerializer
-    queryset = Comment.objects.all()
+    queryset = Comment.objects.all().prefetch_related('mentions')

@@ -26,9 +26,9 @@ class DirectMessageList(generics.ListCreateAPIView):
         Filters messages by sender and receiver for the logged-in user.
         """
         user = self.request.user
-        ruser_id = self.request.query_params.get('user_id')
+        user_id = self.request.query_params.get('user_id')
 
-        if receiver_id:
+        if user_id:
             # Validate that the receiver exists
             other_user = User.objects.filter(id=user_id).first()
             if not other_user:
@@ -47,7 +47,7 @@ class DirectMessageList(generics.ListCreateAPIView):
 
         def perform_create(self, serializer):
             """
-            Handles message creation by assigning teh sender as the logged-in
+            Handles message creation by assigning the sender as the logged-in
             user. Validates that the specified receiver exists before saving.
             a new message.
             """
