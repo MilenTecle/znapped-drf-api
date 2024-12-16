@@ -62,7 +62,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     def _associate_hashtags(self, post, hashtag_names):
         """
-        Associate hashtags with a post. Creates new hashtags if the don't
+        Associate hashtags with a post. Creates new hashtags if they don't
         exist.
         """
         hashtags = [

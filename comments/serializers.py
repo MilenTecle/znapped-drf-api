@@ -43,10 +43,9 @@ class CommentSerializer(serializers.ModelSerializer):
         the mentions with the comment.
         """
         mention_usernames = validated_data.pop('mention_usernames', [])
-        mentioned_users = (User.objects.filter(username__in=mention_usernames))
+        mentioned_users = User.objects.filter(username__in=mention_usernames)
 
         comment = super().create(validated_data)
-        comment.save()
 
         if mentioned_users.exists():
             comment.mentions.set(mentioned_users)
