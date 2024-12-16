@@ -45,23 +45,23 @@ class DirectMessageList(generics.ListCreateAPIView):
             models.Q(sender=user) | models.Q(receiver=user)
         )
 
-        def perform_create(self, serializer):
-            """
-            Handles message creation by assigning the sender as the logged-in
-            user. Validates that the specified receiver exists before saving.
-            a new message.
-            """
-            receiver_id = self.request.data.get('receiver')
-            if not receiver_id:
-                raise ValidationError({"receiver": "This field is required."})
+    def perform_create(self, serializer):
+        """
+        Handles message creation by assigning the sender as the logged-in
+        user. Validates that the specified receiver exists before saving.
+        a new message.
+        """
+        receiver_id = self.request.data.get('receiver')
+        if not receiver_id:
+            raise ValidationError({"receiver": "This field is required."})
 
-            receiver = User.objects.filter(id=receiver_id).first()
-            if not receiver:
-                raise ValidationError({"receiver": "User does not exist."})
+        receiver = User.objects.filter(id=receiver_id).first()
+        if not receiver:
+            raise ValidationError({"receiver": "User does not exist."})
 
-            # Save the message with sender as the logged-in user
-            serializer.save(sender=self.request.user,
-                            receiver=receiver, read=False)
+        # Save the message with sender as the logged-in user
+        serializer.save(sender=self.request.user,
+                        receiver=receiver, read=False)
 
 
 class MarkMessageAsRead(APIView):
