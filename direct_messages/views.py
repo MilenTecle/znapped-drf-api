@@ -39,11 +39,12 @@ class DirectMessageList(generics.ListCreateAPIView):
             return DirectMessage.objects.filter(
                 models.Q(sender=user, receiver_id=user_id) |
                 models.Q(sender_id=user_id, receiver=user)
-            )
-        # Retrieve all messages for the logged-in user
+            ).order_by('created_at')
+
+        # Retrieve messages exchanged with the specified user
         return DirectMessage.objects.filter(
             models.Q(sender=user) | models.Q(receiver=user)
-        )
+        ).order_by('created_at')
 
     def perform_create(self, serializer):
         """
