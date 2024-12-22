@@ -41,8 +41,10 @@ class DirectMessageList(generics.ListCreateAPIView):
                 models.Q(sender_id=user_id, receiver=user)
             ).distinct().order_by('created_at')
 
-        # Return an empty queryset if no user_id is provided
-        return DirectMessage.objects.none()
+        # Retrieve all messages for the logged-in user
+        return DirectMessage.objects.filter(
+            models.Q(sender=user) | models.Q(receiver=user)
+        ).distinct().order_by('created_at')
 
     def perform_create(self, serializer):
         """

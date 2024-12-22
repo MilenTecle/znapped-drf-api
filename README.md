@@ -1,10 +1,15 @@
-# Znapped
+# Znapped API
 
-Znapped is built using Django REST Framework. It serves as the API for a social media platform where users can create posts, follow other users, react to content, comment, send direct messages and manage notifications.
+Znapped API is built using Django REST Framework. It serves as the API for a social media platform where users can create posts, follow other users, react to content, comment, send direct messages and manage notifications.
 
-The live link can be found here - [znapped-drfapi](https://znapped-drfapi-8eee30ca5ab2.herokuapp.com/)
+![Znapped-drf-api](docs/readme-images/znapped-drfapi.PNG)
 
-![Znapped Am I Responsive Image](docs/readme_images/am_i_responsive.png)
+
+Live Links
+- Backend live API: [Znapped API](https://znapped-drfapi-8eee30ca5ab2.herokuapp.com/)
+- Frontend live Site: [Znapped](https://znapped-972f129d36da.herokuapp.com/)
+
+- Frontend repository: [Frontend repository](https://github.com/MilenTecle/znapped)
 
 ## Contents
 
@@ -62,7 +67,7 @@ The live link can be found here - [znapped-drfapi](https://znapped-drfapi-8eee30
 - Notifications for new messages.
 
 ### Notifications
-- Notifications for likes, follows and messages.
+- Notifications for likes, follows, comments and messages.
 - Mark notifications as read.
 
 ### Search and Filter
@@ -72,42 +77,43 @@ The live link can be found here - [znapped-drfapi](https://znapped-drfapi-8eee30
 ## API Endpoints
 
 ### User and Profile
-- GET /profiles/ - List all user profiles
-- GET /profiles/<id>/ -  Retrieve a single profile
-- PUT /profiles/<id>/ - Update profile details, only for authenticated users.
+- GET `/profiles/` - List all user profiles
+- GET `/profiles/<pk>/` -  Retrieve a single profile
+- PUT `/profiles/<pk>/` - Update profile details, only for authenticated users.
 
 ### Posts
-- GET /posts/ - List all posts
-- POST /posts/ - Create a new post
-- GET /posts/<id>/ - Retrieve a specific post
-- PUT /posts/<id>/ - Update a post (owner only)
-- DELETE /posts/<id>/ - Delete a post (owner only)
+- GET `/posts/` - List all posts
+- POST `/posts/` - Create a new post
+- GET `/posts/<pk>/` - Retrieve a specific post
+- PUT `/posts/<pk>/` - Update a post (owner only)
+- DELETE `/posts/<pk>/`- Delete a post (owner only)
 
 ### Comments
-- GET /comments/ - List all comments
-- POST /comments/ - Create a comment
-- PUT /comments/<id>/ - Update a comment (owner only)
-- DELETE /comments/<id>/ - Delete a comment (owner only)
+- GET `/comments/` - List all comments
+- POST `/comments/` - Create a comment
+- PUT `/comments/<pk>/` - Update a comment (owner only)
+- DELETE `/comments/<pk>/` - Delete a comment (owner only)
 
 ### Likes
-- GET /likes/ - List all likes
-- POST /likes/ - React to a post
-- PUT /comments/<id>/ - Update a comment (owner only)
-- DELETE /likes/<id>/ - Remove a reaction (owner only)
+- GET `/likes/` - List all likes
+- POST `/likes/` - React to a post
+- DELETE `/likes/<pk>/` - Remove a reaction (owner only)
 
 ### Follower
-- GET /followers/ - List all followers
-- POST /followers/ - Follow a user
-- DELETE /followers/<id>/ -Unfollow a user (owner only)
+- GET `/followers/` - List all followers
+- POST `/followers/` - Follow a user
+- DELETE `/followers/<pk>/` -Unfollow a user (owner only)
 
 ### Messaging
-- GET /direct-messages/ - List all messages
-- POST /direct-messages/ - Send a message
-- PATCH /direct-messages/mark-as-read - Mark messages as read.
+- GET `/direct-messages/` - List all messages
+- POST `/direct-messages/` - Send a message
+- PATCH `/direct-messages/mark-as-read` - Mark messages as read.
+- DELETE `/direct-messages/<pk>/` - Delete a message (Sender or receiver)
 
 ### Notifications
-- GET /notifications/ - List all notifications
-- PATCH /notifications/mark-as-read - Mark notifications as read.
+- GET `/notifications/` - List all notifications
+- PATCH `/notifications/mark-as-read` - Mark notifications as read.
+- DELETE `/notifications/<pk>` - Delete a notification (owner only)
 
 
 ## Database Models
