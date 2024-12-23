@@ -274,7 +274,10 @@ The application was deployed to Heroku using the following steps:
 4. Select you region.
 5. Click on "Create App"
 
-#### Create the PostgreSQL database using ElephantSQL
+#### Create the PostgreSQL database
+Use the [CI Database Maker](https://dbs.ci-dbs.net/) provided by Code Institute to create you PostgreSQL database.
+
+Or create the database using ElephantSQL:
 1. Log in to ElephantSQL and navigate to Dashboard.
 2. Click on "Create New Instance".
 3. Provide a project name and choose "Tiny Turtle", the free plan.
@@ -282,38 +285,37 @@ The application was deployed to Heroku using the following steps:
 5. Review all the details and click on "Create Instance".
 6. Return to the Dashboard and click on the newly created instance and copy the database URL.
 
+  #### Heroku Config Vars
+  1. Go to the settings tab and navigate to config vars.
+  2. Click to reveal config vars and add the database url.
+  3. Add config var: DATABASE_UR and value: the PostgreSQL database url.
+  4. Add config var: DISABLE_COLLECSTATIC and the value: 1.
+
+
 #### Create and prepare files
 
 - Create requirements.txt file
-- Create a "Procfile" in the main directory and add: web: gunicorn project-name.wsgi
+- Create a "Procfile" in the main directory and add:
+**release: python manage.py makemigrations && python manage.py migrate
+web: gunicorn drf_api.wsgi**
+
+### Install libraries
+- Install DJ Database by using the command - pip install dj_database_url in the terminal.
+- Install gunicorn by using the command - pip install gunicorn in the terminal.
+- Install CORS by using the command pip install django-cors-headers.
 
   ##### Env.py file
   - Create an env.py file in the main directory in your Gitpod workspace and ensure it's included in the .gitignore file.
-  - Add the DATABASE_URL and SECRET_KEY to the env.py file.
-  - Add the Cloudinary URL to env.py.
+  - Add the DATABASE_URL to the env.py file and the rest of your variables.
 
   ##### Settings.py file
-  - Update the settings.py file to import the env.py file.
+  - Update the settings.py file to import the env.py file and import dj_database_url.
   - Add the SECRET_KEY and DATABASE_URL file paths.
-  - Comment out the default database configuration.
-  - Add Cloudinary to the list of installed apps.
-  - Add the settings for STATIC files:
-    - The URL
-    - Directory path
-    - Rooth path
-    - Storage path
-    - Media URL
-    - Default file storage path
-  - Link the file to the templates directory in Heroku
-  - Change the templates directory to TEMPLATES_DIR
-  - Add Heroku to the ALLOWED_HOSTS list
-
-  #### Heroku Config Vars
-  Add these Config Vars in Heroku:
-  - SECRET_KEY and value
-  - CLOUDINARY_URL
-  - PORT: 8000
-  - DISABLE_COLLECTSTATIC = 1
+  - Replace the default database configuration.
+  - Add Heroku and localhost to the ALLOWED_HOSTS list.
+  - Add 'corsheaders' to the installed apps and 'corsheaders.middleware.CorsMiddleware' at the top of the Middleware list.
+  - To allow cookies, add CORS_ALLOW_CREDENTIALS = True.
+  - Add your local and deployed url to CORS_ALLOWED_ORIGINS.
 
 ### Deploy
   - DEBUG in settings.py needs to be set to False before deploying.
@@ -322,12 +324,12 @@ The application was deployed to Heroku using the following steps:
   - Click on view or open app to view the deployed site.
 
 ### Fork
-- Navigate to the repository [Znapped](https://github.com/MilenTecle/Inventory-Manager/tree/main).
+- Navigate to the repository [Znapped API](https://github.com/MilenTecle/znapped-drf-api).
 - On the right side of the page, at the top of the repository, select "Fork".
 - A copy of the repository is now created.
 
 ### Clone
-1. Navigate to the repository [Znapped](https://github.com/MilenTecle/Inventory-Manager/tree/main).
+1. Navigate to the repository [Znapped API](https://github.com/MilenTecle/znapped-drf-api).
 2. Click on the **'Code'** dropdown menu above the list of files and choose a method to copy the URL, via HTTPS, SSH or GitHub CLI.
 3. Open **Terminal**, change the current working directory to the desired location of the cloned directory.
 4. Type **'git clone'** and paste the URL copied form GitHub.
@@ -335,29 +337,16 @@ The application was deployed to Heroku using the following steps:
 
 
 
-
-The live link can be found here - [Znapped](https://inventory-manager-milen-aa94458871b4.herokuapp.com/)
-
 ## Credits
 
 ### Code
 
 #### General
-- I Think, Therefore I Blog - I relied on the instructions and walkthrough to setup my project.
-- [Integrating Cloudinary-storage](https://dev.to/spymonk/integrating-cloudinary-storage-with-django-4ipb)
-- [Django reverse import](https://docs.djangoproject.com/en/5.0/ref/urlresolvers/)
-- [Change display name in django admin](https://forum.djangoproject.com/t/django-admin-page-edit-app-names/14720)
-- [Debug toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/installation.html) - Was used when building the project to further investigate errors.
-- [Style the login and signup form](https://github.com/danihodovic/django-allauth-ui) - Style concept was taken from here.
+- The Django REST Framework walkthrough project served as the foundation of my backend project.
+
 
 #### Django Authentication System
 
-- [Django authentication system](https://docs.djangoproject.com/en/5.0/topics/auth/default/)
-
-- [Django allauth installation guide ](https://docs.allauth.org/en/latest/installation/quickstart.html)
-
-- [Using Google](https://medium.com/@infowithkiiru/django-user-registration-with-google-67524cce5ab7)
-- [Django google oauth](https://pylessons.com/django-google-oauth)
 
 
 
@@ -370,3 +359,5 @@ The content is written by the developer.
 - To the slack community for answering my questions and guiding me.
 - To tutor support, for helping me when I got stuck trying to solve problems throughout the project.
 - To my husband and family, for all the support and patience throughout this project.
+
+[Back to the top](<#contents>)
