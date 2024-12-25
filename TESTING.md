@@ -5,9 +5,6 @@
     - [Manual Testing](#manual-testing)
     - [Automated Testing](#python-automated-testing)
 - [Bugs](#bugs)
-    - [Fixed Bugs](#fixed-bugs)
-    - [Unfixed Bugs](#fixed-bugs)
-
 
 ## Validator Testing
 
@@ -97,6 +94,53 @@
 
 ## Manual Testing
 
+### Testing API Endpoints and Responses
+|**Endpoint** | **Result** |
+|-------------------------------|-----------|
+| **Profiles**                          |     |
+| GET `/profiles/`                          | ✅ |
+| GET `/profiles/<pk>/`                     | ✅ |
+| PUT `/profiles/<pk>/`                     | ✅ |
+| **Posts**                                 |
+| GET `/posts/`                             | ✅ |
+| POST `/posts/`                            | ✅ |
+| GET `/posts/<pk>/`                        | ✅ |
+| PUT `/posts/<pk>/`                        | ✅ |
+| DELETE `/posts/<pk>/`                     | ✅ |
+| **Comments**                              |     |
+| GET `/comments/`                          | ✅ |
+| POST `/comments/`                         | ✅ |
+| PUT `/comments/<pk>/`                     | ✅ |
+| DELETE `/comments/<pk>/`                  | ✅ |
+| **Likes**                                 |     |
+| GET `/likes/`                             | ✅ |
+| POST `/likes/`                            | ✅ |
+| DELETE `/likes/<pk>/`                     | ✅ |
+| **Follower**                              |     |
+| GET `/followers/`                         | ✅ |
+| POST `/followers/`                        | ✅ |
+| DELETE `/followers/<pk>/`                 | ✅ |
+| **Messaging**                             |     |
+| GET `/direct-messages/`                   | ✅ |
+| POST `/direct-messages/`                  | ✅ |
+| PATCH `/direct-messages/mark-as-read`     | ✅ |
+| DELETE `/direct-messages/<pk>/`           | ✅ |
+| **Notifications**                         |     |
+| GET `/notifications/`                     | ✅ |
+| PATCH `/notifications/mark-as-read`       | ✅ |
+| DELETE `/notifications/<pk>`              | ✅ |
+
+
+### Testing CRUD Operations
+**App**|**Create**|**Read**|**Update**|**Delete**|
+|------|-------|-----|----|--------|
+| **Profiles** | ✅ | ✅ | ✅ | --- |
+| **Posts** | ✅ | ✅ | ✅ |  ✅|
+| **Comments** | ✅ | ✅ | ✅ |  ✅|
+| **Likes** | ✅ | ✅ | --- |  ✅|
+| **Followers** | ✅ | ✅ | --- |  ✅|
+| **Messaging** | ✅ | ✅ | ✅ |  ✅|
+| **Notifications** | --- | ✅ | ✅ |  ✅|
 
 
 ## Python Automated Testing
