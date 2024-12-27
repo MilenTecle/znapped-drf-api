@@ -344,18 +344,60 @@ web: gunicorn drf_api.wsgi**
 #### General
 - The Django REST Framework walkthrough project served as the foundation of my backend project.
 
+#### Notifications
+ General guidance on how to implement a Notifications System:
+- [How to implement Notifications System](https://stackoverflow.com/questions/72264677/how-can-i-implement-notifications-system-in-django)
 
-#### Django Authentication System
+Models and APIs to mark notifications as read:
+- [Real-Time Notification System](https://www.horilla.com/blogs/how-to-build-a-real-time-notification-system-with-django-notifications-hq/)
 
+- [Django Server-Sent Events](https://keepsimple.dev/p/django-server-sent-events.html)
 
+- [Notification Types and signal implementation](https://dev.to/m16bappi/building-a-flexible-notification-system-in-django-a-comprehensive-guide-571g)
 
+Using signals for notifications:
+- [Django signals documentation](https://docs.djangoproject.com/en/5.1/topics/signals/)
+
+- [Setup and triggering of signals](https://stackoverflow.com/questions/64666741/why-is-my-signal-not-working-in-django-what-im-doing-wrong)
+
+#### Direct Messages
+Query logic in DirectMessage views:
+- [Query Optimization with Django Rest Framework](https://tech.serhatteker.com/post/2021-11/django-rest-query-part-2/)
+
+- [Django Queries Documentation](https://docs.djangoproject.com/en/5.1/topics/db/queries/)
+
+- [Complex Lookups with Q Objects](https://docs.djangoproject.com/en/5.1/topics/db/queries/#complex-lookups-with-q-objects)
+
+Implementation of Messaging System:
+- [Django Messages Framework Documentation](https://docs.djangoproject.com/en/5.1/ref/contrib/messages/)
+
+- [Django DirectMessages structure](https://codemax.app/snippet/implementation-of-django-directmessages-application)
+
+- [Private Messaging Conversation View](https://stackoverflow.com/questions/43696074/django-private-messaging-conversation-view)
+
+#### Hashtags
+- [Creating and associating Hashtags](https://stackoverflow.com/questions/28274333/django-rest-framework-many-to-many-relations-create-if-not-exists)
+
+Detailed guides on how to seralize Many-to-Many fields and update a Many-to-Many Relationship that I used when implementing the hashtag functionality and logic to associate hashtags:
+- [How to seralize Many-to-Many Fields](https://codemax.app/snippet/how-to-serialize-the-many-to-many-fields-in-drf)
+
+- [Updating a Many-to-Many Relationship](https://dev.to/danielcoker/updating-a-many-to-many-relationship-5h2j)
+
+- [Django REST Framework Serializers Documentation](https://www.django-rest-framework.org/api-guide/serializers)
+
+- [Implementing Tags (StackOverflow)](https://stackoverflow.com/questions/50203063/implementing-tags-using-django-rest-framework)
+
+List processing and extraction of hashtags:
+- [List processing and extraction of items (hashtags)](https://stackoverflow.com/questions/50203063/implementing-tags-using-django-rest-framework)
+
+- [Extract hashtags from a post](https://stackoverflow.com/questions/68918228/django-extract-hash-tags-from-a-post-and-save-them-all-in-a-many-to-one-relati)
 
 ### Content
 The content is written by the developer.
 
 
 ### Acknowledgements
-- Antonio, my mentor, for guiding med throughout the project with important suggestions to improve the applications funcionality.
+- Jubril, my mentor, for guiding med throughout the project with important suggestions and invaluable support to improve the applications funcionality.
 - To the slack community for answering my questions and guiding me.
 - To tutor support, for helping me when I got stuck trying to solve problems throughout the project.
 - To my husband and family, for all the support and patience throughout this project.
