@@ -13,7 +13,7 @@ from rest_framework.exceptions import ValidationError
 class DirectMessageList(generics.ListCreateAPIView):
     """
     View to list all direct messages or create a new message.
-    Only authentiated users can access this view.
+    Only authenticated users can access this view.
     """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = DirectMessageSerializer
@@ -33,7 +33,7 @@ class DirectMessageList(generics.ListCreateAPIView):
             other_user = User.objects.filter(id=user_id).first()
             if not other_user:
                 raise ValidationError(
-                    {"receiver_id": "No user found with the provided ID."}
+                    {"error": "No user found with the provided ID."}
                 )
             # Retrieve messages exchanged with the specified user
             return DirectMessage.objects.filter(
