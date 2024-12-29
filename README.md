@@ -37,9 +37,8 @@ Live Links
     - [Direct Message model](#direct-message-model)
     - [Notification model](#notification-model)
 - [Testing](#testing)
-- [Technologies used](#technologies-used)
-- [Libraries & Frameworks](#libraries--frameworks)
-- [Tools & Programs](#tools--programs)
+- [Technologies](#technologies)
+- [Libraries & Frameworks](#libraries-frameworks)
 - [Deployment](#deployment)
     - [Heroku](#heroku)
 - [Credits](#credits)
@@ -243,14 +242,14 @@ Testing and the results can be found [here](/TESTING.md).
 
 ## Technologies
 
-  - [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - Was used throughout the project to make changes and to test the responsivness.
+   - [Microsoft Edge Dev Tools](https://learn.microsoft.com/en-us/microsoft-edge/developer/) - Was used throughout the project to make changes and to test the responsiveness.
   - [Django](https://docs.djangoproject.com/en/5.0/) - Main python framework for development of this project.
   - [ElephantSQL](https://www.elephantsql.com/) - PostgreSQL database hosting for this project.
   - [Git](https://git-scm.com/) - Git was used for version control by using the Gitpod terminal to commit and then push to Github.
   - [Github](https://github.com/) - Is where the projects code is stored after being pushed.
   - [Gitpod](https://gitpod.io/) - Was the Codespace used for this project.
   - [Heroku](https://www.heroku.com) - The cloud based platform to deploy the site on.
-  - [JWT] - Used for authentication
+  - [JWT](https://jwt.io/introduction) - Used for authentication
 
   ## Libraries & Frameworks
   - [Cloudinary](https://cloudinary.com/) - Used for media storage
@@ -270,7 +269,7 @@ The application was deployed to Heroku using the following steps:
 #### Create the Heroku App
 1. Log in to Heroku
 2. Click on New and select Create new app from the drop-down menu.
-3. Enter a unique and appropiate app name.
+3. Enter a unique and appropriate app name.
 4. Select you region.
 5. Click on "Create App"
 
@@ -378,8 +377,8 @@ Implementation of Messaging System:
 #### Hashtags
 - [Creating and associating Hashtags](https://stackoverflow.com/questions/28274333/django-rest-framework-many-to-many-relations-create-if-not-exists)
 
-Detailed guides on how to seralize Many-to-Many fields and update a Many-to-Many Relationship that I used when implementing the hashtag functionality and logic to associate hashtags:
-- [How to seralize Many-to-Many Fields](https://codemax.app/snippet/how-to-serialize-the-many-to-many-fields-in-drf)
+Detailed guides on how to serialize Many-to-Many fields and update a Many-to-Many Relationship that I used when implementing the hashtag functionality and logic to associate hashtags:
+- [How to serialize Many-to-Many Fields](https://codemax.app/snippet/how-to-serialize-the-many-to-many-fields-in-drf)
 
 - [Updating a Many-to-Many Relationship](https://dev.to/danielcoker/updating-a-many-to-many-relationship-5h2j)
 
@@ -397,7 +396,7 @@ The content is written by the developer.
 
 
 ### Acknowledgements
-- Jubril, my mentor, for guiding med throughout the project with important suggestions and invaluable support to improve the applications funcionality.
+- Jubril, my mentor, for guiding med throughout the project with important suggestions and invaluable support to improve the applications functionality.
 - To the slack community for answering my questions and guiding me.
 - To tutor support, for helping me when I got stuck trying to solve problems throughout the project.
 - To my husband and family, for all the support and patience throughout this project.

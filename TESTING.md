@@ -1,9 +1,8 @@
 ## Contents
 
 - [Testing](#testing)
-    - [Validator Tests](#validator-tests)
+    - [Validator Testing](#validator-testing)
     - [Manual Testing](#manual-testing)
-    - [Automated Testing](#python-automated-testing)
 - [Bugs](#bugs)
 
 ## Validator Testing
@@ -142,18 +141,6 @@
 | **Messaging** | ✅ | ✅ | ✅ |  ✅|
 | **Notifications** | --- | ✅ | ✅ |  ✅|
 
-
-## Python Automated Testing
-Automated testing was conducted on specific components of the application, focusing on key features utilizing Django's built-in 'TestCase' class. Although, given more time the intention was to extend the automated tests to include more features and scenarios. A thourough manual testing process was also implemented.
-
-**Test** | **Description** | **Result** |
-|:-----|:------|:------|
-|test_inventory_form_valid| Verifies that the "InventoryForm" is validated when provided with a valid category and name. This test ensures that the form's validation logic properly accepts correct input.| Passed
-|test_inventory_form_invalid| Tests the "InventoryForm" for correct handling of invalid submissions, specifically when mandatory fields are missing. This test is to confirm that the form's logic handles incomple och incorrect submissions correctly.| Passed
-|test_items_form_valid| Verifies that the "ItemsForm" validates correctly when provided with valid data. This test ensures that the form properly handles valid user inputs for item creation.| Passed
-|test_items_form_invalid| Test the form handling for invalid submissions, such as when item name is missing.  This test is to confirm that the form's logic handles incomplete och incorrect submissions correctly to prevent data integrity errors.| Passed
-|test_create_inventory| Tests the functionality of creating a new inventory list through a POST request, verifying that the list is correctly added to the database and that the user is redirected correctly.| Passed
-|test_delete_list| Tests the functionality of deleting an inventory list, verifying that after deletion, the list is deleted from the database and the user redirected correctly.| Passed
 
 
 ## Bugs
