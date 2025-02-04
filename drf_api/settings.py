@@ -90,7 +90,7 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
     '3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
     '8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
-    'znapped-972f129d36da.herokuapp.com',
+    'znapped.vercel.app',
     '127.0.0.1',
     'localhost',
     'testserver',
@@ -153,7 +153,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 
 CSRF_TRUSTED_ORIGINS = [
     'https://3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
-    'https://znapped-972f129d36da.herokuapp.com',
+    'https://znapped.vercel.app',
     'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',  # noqa
     'http://127.0.0.1:8000',
     'http://localhost:8000',
