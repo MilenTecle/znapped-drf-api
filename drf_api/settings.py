@@ -11,13 +11,14 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import os
 import re
 import dj_database_url
 from datetime import timedelta
 
-if os.path.exists('env.py'):
-    import env
+if os.path.exists('.env'):
+    load_dotenv()
 
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
@@ -67,16 +68,17 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
 }
 
-if 'DEV' in os.environ:
+if "DEV" in os.environ:
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
     JWT_AUTH_SECURE = False
-    SESSION_COOKIE_SAMESITE = 'None'
 else:
-    SESSION_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SAMESITE = 'None'
     CSRF_COOKIE_SECURE = True
+
+CSRF_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SAMESITE = "None"
+CORS_ALLOW_CREDENTIALS = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -88,14 +90,17 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
-    '3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
-    '8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
+    '.codeinstitute-ide.net',
+    '.codeinstitute-ide.net',
     'znapped.vercel.app',
     '127.0.0.1',
     'localhost',
     'testserver',
-    os.environ.get('ALLOWED_HOST'),
 ]
+
+allowed_host_env = os.getenv('ALLOWED_HOST')
+if allowed_host_env:
+    ALLOWED_HOSTS.append(allowed_host_env)
 
 
 # Application definition
@@ -142,22 +147,26 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
-    ]
-if 'CLIENT_ORIGIN_DEV' in os.environ:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        os.environ.get('CLIENT_ORIGIN_DEV', ''),
-    ]
+CORS_ALLOWED_ORIGINS = [
+    "https://znapped.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:8000",
+]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
-    'https://znapped.vercel.app',
-    'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',  # noqa
-    'http://127.0.0.1:8000',
-    'http://localhost:8000',
+    "https://znapped.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:8000",
 ]
+
+# Load CLIENT_ORIGIN if set in environment
+client_origin = os.getenv("CLIENT_ORIGIN")
+if client_origin:
+    CORS_ALLOWED_ORIGINS.append(client_origin)
+
+client_origin_dev = os.getenv("CLIENT_ORIGIN_DEV")
+if client_origin_dev:
+    CORS_ALLOWED_ORIGIN_REGEXES = [client_origin_dev]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -194,6 +203,11 @@ if 'DEV' in os.environ:
     }
 else:
     db_url = os.environ.get("DATABASE_URL")
+
+    if not db_url:
+        raise ValueError(
+            "DATABASE_URL is missing. Ensure it is set in .env or environment variables.")
+
     DATABASES = {
         'default': dj_database_url.parse(db_url)
     }
