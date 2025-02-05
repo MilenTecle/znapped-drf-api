@@ -146,6 +146,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+CORS_ALLOWED_ORIGINS = [
+    "https://znapped.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:8000",
+]
+
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https:\/\/.*\.codeinstitute-ide\.net$",
     r"^https:\/\/znapped\.vercel\.app$",
@@ -159,14 +166,15 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net",
 ]
 
-# Load CLIENT_ORIGIN if set in environment
+
 client_origin = os.getenv("CLIENT_ORIGIN")
 if client_origin:
     CORS_ALLOWED_ORIGINS.append(client_origin)
 
+
 client_origin_dev = os.getenv("CLIENT_ORIGIN_DEV")
 if client_origin_dev:
-    CORS_ALLOWED_ORIGIN_REGEXES = [client_origin_dev]
+    CORS_ALLOWED_ORIGIN_REGEXES.append(client_origin_dev)
 
 CORS_ALLOW_CREDENTIALS = True
 
