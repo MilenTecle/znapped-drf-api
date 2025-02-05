@@ -91,7 +91,6 @@ DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
     '.codeinstitute-ide.net',
-    '.codeinstitute-ide.net',
     'znapped.vercel.app',
     '127.0.0.1',
     'localhost',
@@ -147,16 +146,17 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://znapped.vercel.app",
-    "http://localhost:3000",
-    "http://127.0.0.1:8000",
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https:\/\/.*\.codeinstitute-ide\.net$",
+    r"^https:\/\/znapped\.vercel\.app$",
+    r"^http:\/\/localhost:3000$",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://znapped.vercel.app",
     "http://localhost:3000",
     "http://127.0.0.1:8000",
+    "https://*.codeinstitute-ide.net",
 ]
 
 # Load CLIENT_ORIGIN if set in environment
