@@ -7,7 +7,7 @@ Znapped API is built using Django REST Framework. It serves as the API for a soc
 
 Live Links
 - Backend live API: [Znapped API](https://znapped-drfapi-8eee30ca5ab2.herokuapp.com/)
-- Frontend live Site: [Znapped](https://znapped.vercel.app/)
+- Frontend live Site: [Znapped](https://znapped-972f129d36da.herokuapp.com/)
 
 - Frontend repository: [Frontend repository](https://github.com/MilenTecle/znapped)
 
