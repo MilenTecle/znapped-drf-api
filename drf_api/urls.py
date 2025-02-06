@@ -30,7 +30,7 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
     path('posts/', include('posts.urls')),
     path('comments/', include('comments.urls')),
-    path('likes/', include('likes.urls')),
+    path('reactions/', include('likes.urls')),
     path('followers/', include('followers.urls')),
     path('notifications/', include('notifications.urls')),
     path('direct-messages/', include('direct_messages.urls')),
