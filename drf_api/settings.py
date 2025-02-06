@@ -88,8 +88,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
-    '3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
-    '8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
+    '.codeinstitute-ide.net',
     'znapped-972f129d36da.herokuapp.com',
     '127.0.0.1',
     'localhost',
