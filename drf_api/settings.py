@@ -11,13 +11,14 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import os
 import re
 import dj_database_url
 from datetime import timedelta
 
-if os.path.exists('env.py'):
-    import env
+if os.path.exists('.env'):
+    load_dotenv()
 
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
@@ -93,8 +94,11 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     'testserver',
-    os.environ.get('ALLOWED_HOST'),
 ]
+
+allowed_host_env = os.getenv('ALLOWED_HOST')
+if allowed_host_env:
+    ALLOWED_HOSTS.append(allowed_host_env)
 
 
 # Application definition
@@ -193,6 +197,11 @@ if 'DEV' in os.environ:
     }
 else:
     db_url = os.environ.get("DATABASE_URL")
+
+    if not db_url:
+        raise ValueError(
+            "DATABASE_URL is missing. Ensure it is set in .env or environment variables.")
+
     DATABASES = {
         'default': dj_database_url.parse(db_url)
     }
