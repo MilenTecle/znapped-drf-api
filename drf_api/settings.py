@@ -11,14 +11,13 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from dotenv import load_dotenv
 import os
 import re
 import dj_database_url
 from datetime import timedelta
 
-if os.path.exists('.env'):
-    load_dotenv()
+if os.path.exists('env.py'):
+    import env
 
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
@@ -46,7 +45,7 @@ if 'DEV' not in os.environ:
 
 REST_USE_JWT = True
 JWT_AUTH_SECURE = True
-JWT_AUTH_COOKIE = "my-app-auth"
+JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 JWT_AUTH_HTTPONLY = True
@@ -68,17 +67,16 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
 }
 
-if "DEV" in os.environ:
+if 'DEV' in os.environ:
     CSRF_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
     JWT_AUTH_SECURE = False
+    SESSION_COOKIE_SAMESITE = 'None'
 else:
+    SESSION_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SAMESITE = 'None'
     CSRF_COOKIE_SECURE = True
-
-CSRF_COOKIE_SAMESITE = "None"
-SESSION_COOKIE_SAMESITE = "None"
-CORS_ALLOW_CREDENTIALS = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -87,21 +85,17 @@ CORS_ALLOW_CREDENTIALS = True
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = 'DEV' in os.environ
-
-DEBUG = False
+DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
-    '.codeinstitute-ide.net',
-    'znapped.vercel.app',
+    '3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
+    '8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',
+    'znapped-972f129d36da.herokuapp.com',
     '127.0.0.1',
     'localhost',
     'testserver',
+    os.environ.get('ALLOWED_HOST'),
 ]
-
-allowed_host_env = os.getenv('ALLOWED_HOST')
-if allowed_host_env:
-    ALLOWED_HOSTS.append(allowed_host_env)
 
 
 # Application definition
@@ -148,35 +142,22 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-CORS_ALLOWED_ORIGINS = [
-    "https://znapped.vercel.app",
-    "http://localhost:3000",
-    "http://127.0.0.1:8000",
-]
-
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https:\/\/.*\.codeinstitute-ide\.net$",
-    r"^https:\/\/znapped\.vercel\.app$",
-    r"^http:\/\/localhost:3000$",
-]
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        os.environ.get('CLIENT_ORIGIN_DEV', ''),
+    ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://znapped.vercel.app",
-    "http://localhost:3000",
-    "http://127.0.0.1:8000",
-    "https://*.codeinstitute-ide.net",
+    'https://3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
+    'https://znapped-972f129d36da.herokuapp.com',
+    'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',  # noqa
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
 ]
-
-
-client_origin = os.getenv("CLIENT_ORIGIN")
-if client_origin:
-    CORS_ALLOWED_ORIGINS.append(client_origin)
-
-
-client_origin_dev = os.getenv("CLIENT_ORIGIN_DEV")
-if client_origin_dev:
-    CORS_ALLOWED_ORIGIN_REGEXES.append(client_origin_dev)
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -213,11 +194,6 @@ if 'DEV' in os.environ:
     }
 else:
     db_url = os.environ.get("DATABASE_URL")
-
-    if not db_url:
-        raise ValueError(
-            "DATABASE_URL is missing. Ensure it is set in .env or environment variables.")
-
     DATABASES = {
         'default': dj_database_url.parse(db_url)
     }
