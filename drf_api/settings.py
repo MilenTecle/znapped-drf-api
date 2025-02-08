@@ -89,7 +89,6 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
-    '.codeinstitute-ide.net',
     'znapped-972f129d36da.herokuapp.com',
     '127.0.0.1',
     'localhost',
@@ -147,7 +146,8 @@ MIDDLEWARE = [
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
+        os.environ.get('CLIENT_ORIGIN'),
+        'https://www.linkedin.com',
     ]
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     CORS_ALLOWED_ORIGIN_REGEXES = [
@@ -155,11 +155,11 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://3000-milentecle-znapped-smoje4aw7d1.ws.codeinstitute-ide.net',
     'https://znapped-972f129d36da.herokuapp.com',
-    'https://8000-milentecle-znappeddrfap-5l60hmfn51j.ws.codeinstitute-ide.net',  # noqa
+    'https://localhost',
     'http://127.0.0.1:8000',
     'http://localhost:8000',
+    'https://www.linkedin.com',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
