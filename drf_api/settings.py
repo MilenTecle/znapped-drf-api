@@ -73,11 +73,15 @@ if 'DEV' in os.environ:
     SESSION_COOKIE_SECURE = False
     JWT_AUTH_SECURE = False
     SESSION_COOKIE_SAMESITE = 'None'
+    SECURE_SSL_REDIRECT = False
+
 else:
     SESSION_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SAMESITE = 'None'
     CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
