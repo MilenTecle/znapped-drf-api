@@ -74,12 +74,16 @@ if 'DEV' in os.environ:
     JWT_AUTH_SECURE = False
     SESSION_COOKIE_SAMESITE = 'None'
     SECURE_SSL_REDIRECT = False
+    CSRF_COOKIE_HTTPONLY = False
+    SESSION_COOKIE_HTTPONLY = False
 
 else:
     SESSION_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
     CSRF_COOKIE_SAMESITE = 'None'
     CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_HTTPONLY = True
     SECURE_SSL_REDIRECT = True
 
 # To avoid issues when loading the app in an iframe
@@ -152,8 +156,7 @@ MIDDLEWARE = [
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN'),
-        'https://www.linkedin.com',
+        os.environ.get('CLIENT_ORIGIN')
     ]
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     CORS_ALLOWED_ORIGIN_REGEXES = [
@@ -167,6 +170,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'https://www.linkedin.com',
 ]
+
 
 CORS_ALLOW_CREDENTIALS = True
 
