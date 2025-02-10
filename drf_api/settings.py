@@ -73,21 +73,12 @@ if 'DEV' in os.environ:
     SESSION_COOKIE_SECURE = False
     JWT_AUTH_SECURE = False
     SESSION_COOKIE_SAMESITE = 'None'
-    SECURE_SSL_REDIRECT = False
-    CSRF_COOKIE_HTTPONLY = False
-    SESSION_COOKIE_HTTPONLY = False
-
 else:
     SESSION_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SECURE = True
-    SESSION_COOKIE_HTTPONLY = True
     CSRF_COOKIE_SAMESITE = 'None'
     CSRF_COOKIE_SECURE = True
-    CSRF_COOKIE_HTTPONLY = True
-    SECURE_SSL_REDIRECT = True
 
-# To avoid issues when loading the app in an iframe
-X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -103,12 +94,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     'testserver',
+    os.environ.get('ALLOWED_HOST'),
 ]
-
-allowed_host_env = os.getenv('ALLOWED_HOST')
-if allowed_host_env:
-    ALLOWED_HOSTS.append(allowed_host_env)
-
 
 # Application definition
 
@@ -170,7 +157,6 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'https://www.linkedin.com',
 ]
-
 
 CORS_ALLOW_CREDENTIALS = True
 
