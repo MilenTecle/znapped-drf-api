@@ -118,6 +118,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'corsheaders',
+    'csp',
 
     'profiles',
     'posts',
@@ -139,7 +140,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
+
+# CSP settings
+CSP_FRAME_ANCESTORS = ["'none'"]  # Prevents embedding in iframes
+CSP_DEFAULT_SRC = ["'self'"]
+CSP_SCRIPT_SRC = ["'self'", "https://apis.google.com"]
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
@@ -157,6 +164,8 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'https://www.linkedin.com',
 ]
+
+X_FRAME_OPTIONS = "DENY"
 
 CORS_ALLOW_CREDENTIALS = True
 
